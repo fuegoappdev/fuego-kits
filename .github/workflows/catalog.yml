@@ -1,0 +1,25 @@
+name: Catalog
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# The check installs and loads the listed kits (their module code runs during
+# discovery): keep the token read-only and the job free of secrets.
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Unit tests
+        run: npm test
+      - name: Catalog is generated from sources.json
+        run: npm run check:catalog

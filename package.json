@@ -1,0 +1,15 @@
+{
+  "name": "fuego-kits",
+  "private": true,
+  "description": "Function kits for Firebase and the catalog of the Fuego Kit Store",
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build:catalog": "node scripts/build-catalog.mjs",
+    "check:catalog": "node scripts/build-catalog.mjs --check",
+    "test": "node --test 'scripts/**/*.test.mjs'"
+  }
+}

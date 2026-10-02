@@ -1,0 +1,41 @@
+{
+  "updatedAt": "2026-10-01",
+  "publishers": {
+    "firebase": {
+      "name": "Firebase",
+      "url": "https://firebase.google.com",
+      "verified": true
+    },
+    "fuego": {
+      "name": "Fuego",
+      "url": "https://fuegoapp.dev",
+      "verified": true
+    }
+  },
+  "kits": [
+    {
+      "id": "firestore-bigquery-export",
+      "name": "Stream Firestore to BigQuery",
+      "summary": "Mirror a Cloud Firestore collection to BigQuery in real time: a changelog table plus a view of the latest state of each document.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/firestore-bigquery-export",
+      "version": "0.1.1",
+      "status": "available",
+      "categories": ["analytics"],
+      "icon": "IconChartBar",
+      "replaces": ["firebase/firestore-bigquery-export"]
+    },
+    {
+      "id": "storage-resize-images",
+      "name": "Resize Images",
+      "summary": "Resize the images uploaded to Cloud Storage. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/storage-resize-images",
+      "version": "0.0.1",
+      "status": "announced",
+      "categories": ["media"],
+      "icon": "IconPhoto",
+      "replaces": ["firebase/storage-resize-images"]
+    }
+  ]
+}
