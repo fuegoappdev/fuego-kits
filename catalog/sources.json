@@ -28,11 +28,11 @@
     {
       "id": "storage-resize-images",
       "name": "Resize Images",
-      "summary": "Resize the images uploaded to Cloud Storage. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Resize the images uploaded to Cloud Storage. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/storage-resize-images",
-      "version": "0.0.1",
-      "status": "announced",
+      "version": "0.0.2-rc.6",
+      "status": "preview",
       "categories": ["media"],
       "icon": "IconPhoto",
       "replaces": ["firebase/storage-resize-images"]
@@ -40,11 +40,11 @@
     {
       "id": "bigquery-firestore-export",
       "name": "Export BigQuery to Firestore",
-      "summary": "Copy the rows of BigQuery queries into Firestore on a schedule. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Copy the rows of BigQuery queries into Firestore on a schedule. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/bigquery-firestore-export",
-      "version": "0.0.1",
-      "status": "announced",
+      "version": "0.0.2-rc.5",
+      "status": "preview",
       "categories": ["analytics"],
       "icon": "IconDatabaseImport",
       "replaces": ["firebase/bigquery-firestore-export", "googlecloud/bigquery-firestore-export"]
@@ -52,11 +52,11 @@
     {
       "id": "delete-user-data",
       "name": "Delete User Data",
-      "summary": "Delete the data of a user from Cloud Firestore, Realtime Database and Cloud Storage when the account is deleted. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Delete the data of a user from Cloud Firestore, Realtime Database and Cloud Storage when the account is deleted. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/delete-user-data",
-      "version": "0.0.1",
-      "status": "announced",
+      "version": "0.0.2-rc.8",
+      "status": "preview",
       "categories": ["security"],
       "icon": "IconUserX",
       "replaces": ["firebase/delete-user-data"]
@@ -64,11 +64,11 @@
     {
       "id": "firestore-bundle-builder",
       "name": "Firestore Bundle Builder",
-      "summary": "Build and serve Firestore data bundles from an HTTP endpoint. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Build and serve Firestore data bundles from an HTTP endpoint. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/firestore-bundle-builder",
-      "version": "0.0.1",
-      "status": "announced",
+      "version": "0.0.2-rc.3",
+      "status": "preview",
       "categories": ["utilities"],
       "icon": "IconPackages",
       "replaces": ["firebase/firestore-bundle-builder"]
@@ -76,11 +76,11 @@
     {
       "id": "firestore-counter",
       "name": "Distributed Counter",
-      "summary": "Count documents and events at high rates with sharded counters in Firestore. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Count documents and events at high rates with sharded counters in Firestore. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/firestore-counter",
-      "version": "0.0.1",
-      "status": "announced",
+      "version": "0.0.2-rc.7",
+      "status": "preview",
       "categories": ["utilities"],
       "icon": "IconNumbers",
       "replaces": ["firebase/firestore-counter"]
@@ -88,11 +88,11 @@
     {
       "id": "firestore-genai-chatbot",
       "name": "Build Chatbot with the Gemini API",
-      "summary": "A conversational chatbot backed by Firestore and the Gemini API. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "A conversational chatbot backed by Firestore and the Gemini API. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/firestore-genai-chatbot",
-      "version": "0.0.1",
-      "status": "announced",
+      "version": "0.0.2-rc.3",
+      "status": "preview",
       "categories": ["ai"],
       "icon": "IconMessageChatbot",
       "replaces": ["firebase/firestore-genai-chatbot", "googlecloud/firestore-genai-chatbot"]
@@ -100,11 +100,11 @@
     {
       "id": "firestore-incremental-capture",
       "name": "Firestore Incremental Capture",
-      "summary": "Capture every change of a Firestore database for point-in-time backups and restores. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Capture every change of a Firestore database for point-in-time backups and restores. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/firestore-incremental-capture",
-      "version": "0.0.1",
-      "status": "announced",
+      "version": "0.0.2-rc.3",
+      "status": "preview",
       "categories": ["utilities"],
       "icon": "IconHistory",
       "replaces": ["firebase/firestore-incremental-capture", "googlecloud/firestore-incremental-capture"]
@@ -112,11 +112,11 @@
     {
       "id": "firestore-send-email",
       "name": "Trigger Email from Firestore",
-      "summary": "Send emails from the documents written to a Firestore collection. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Send emails from the documents written to a Firestore collection. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/firestore-send-email",
-      "version": "0.0.1",
-      "status": "announced",
+      "version": "0.0.2-rc.0",
+      "status": "preview",
       "categories": ["messaging"],
       "icon": "IconMail",
       "replaces": ["firebase/firestore-send-email"]
@@ -124,11 +124,11 @@
     {
       "id": "firestore-translate-text",
       "name": "Translate Text in Firestore",
-      "summary": "Translate the strings written to a Firestore collection into several languages. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Translate the strings written to a Firestore collection into several languages. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/firestore-translate-text",
-      "version": "0.0.1",
-      "status": "announced",
+      "version": "0.0.2-rc.4",
+      "status": "preview",
       "categories": ["ai"],
       "icon": "IconLanguage",
       "replaces": ["firebase/firestore-translate-text"]
@@ -136,11 +136,11 @@
     {
       "id": "firestore-vector-search",
       "name": "Vector Search with Firestore",
-      "summary": "Embed the documents of a Firestore collection and query them by similarity. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Embed the documents of a Firestore collection and query them by similarity. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/firestore-vector-search",
-      "version": "0.0.1",
-      "status": "announced",
+      "version": "0.0.2-rc.2",
+      "status": "preview",
       "categories": ["search", "ai"],
       "icon": "IconVectorTriangle",
       "replaces": ["firebase/firestore-vector-search", "googlecloud/firestore-vector-search"]
@@ -148,11 +148,11 @@
     {
       "id": "rtdb-limit-child-nodes",
       "name": "Limit Child Nodes",
-      "summary": "Keep a Realtime Database path to a maximum number of child nodes, deleting the oldest. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Keep a Realtime Database path to a maximum number of child nodes, deleting the oldest. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/rtdb-limit-child-nodes",
-      "version": "0.0.1",
-      "status": "announced",
+      "version": "0.0.2-rc.3",
+      "status": "preview",
       "categories": ["utilities"],
       "icon": "IconListNumbers",
       "replaces": ["firebase/rtdb-limit-child-nodes"]
@@ -160,11 +160,11 @@
     {
       "id": "speech-to-text",
       "name": "Transcribe Speech to Text",
-      "summary": "Transcribe the audio files uploaded to Cloud Storage with Cloud Speech-to-Text. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Transcribe the audio files uploaded to Cloud Storage with Cloud Speech-to-Text. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/speech-to-text",
-      "version": "0.0.1",
-      "status": "announced",
+      "version": "0.0.2-rc.3",
+      "status": "preview",
       "categories": ["ai", "media"],
       "icon": "IconMicrophone",
       "replaces": ["firebase/speech-to-text", "googlecloud/speech-to-text"]

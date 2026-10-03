@@ -53,7 +53,9 @@ function describeInstalled(source) {
             cwd: dir,
             encoding: 'utf8',
             // Discovery runs third-party code: hand it nothing but what it needs.
-            env: { PATH: process.env.PATH, HOME: dir },
+            // firebase-tools (15.27+) gives every kit its instance id at deploy
+            // and discovery; some kits refuse to load without one.
+            env: { PATH: process.env.PATH, HOME: dir, FIREBASE_KIT_INSTANCE_ID: 'catalog' },
             stdio: ['ignore', 'pipe', 'inherit']
         });
         const { firebaseFunctions, manifest } = JSON.parse(out);

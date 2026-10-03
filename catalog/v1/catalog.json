@@ -17,16 +17,16 @@
     {
       "id": "bigquery-firestore-export",
       "name": "Export BigQuery to Firestore",
-      "summary": "Copy the rows of BigQuery queries into Firestore on a schedule. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Copy the rows of BigQuery queries into Firestore on a schedule. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/bigquery-firestore-export",
-      "version": "0.0.1",
-      "status": "announced",
-      "integrity": "sha512-jblQ9CgNbZ+LL85gFXEEE0rP/A9f0/qqQQ3r47A5ZCoerByImPfEXzb+7ioGjyKA6yPhFiff8xJiZZN8sCF4cw==",
+      "version": "0.0.2-rc.5",
+      "status": "preview",
+      "integrity": "sha512-P6R0Zo6Sji16frFDcI9iSYLGu/wJ347TzER+Z5EZmPQCCpUQ+lXRoIS9/Ics39ugLlgubGGMOg2tlByatPuiRA==",
       "license": "Apache-2.0",
-      "repository": "https://github.com/firebase/extensions",
-      "homepage": "https://github.com/firebase/extensions#readme",
-      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/bigquery-firestore-export/v/0.0.1",
+      "repository": "https://github.com/firebase/extensions/tree/HEAD/kits/bigquery-firestore-export",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/bigquery-firestore-export/v/0.0.2-rc.5",
+      "readme": "readme/bigquery-firestore-export.md",
       "categories": [
         "analytics"
       ],
@@ -35,21 +35,361 @@
         "firebase/bigquery-firestore-export",
         "googlecloud/bigquery-firestore-export"
       ],
-      "node": ">=22"
+      "node": ">=22",
+      "firebaseFunctions": "7.3.3-rc.3",
+      "functions": [
+        {
+          "name": "processMessages",
+          "trigger": "pubsub",
+          "eventType": "google.cloud.pubsub.topic.v1.messagePublished",
+          "resource": "{{ params.PUB_SUB_TOPIC }}"
+        },
+        {
+          "name": "upsertTransferConfig",
+          "trigger": "taskQueue"
+        }
+      ],
+      "params": [
+        {
+          "name": "BIGQUERY_DATASET_LOCATION",
+          "label": "BigQuery Dataset Location",
+          "description": "What is the location of the BigQuery dataset referenced in the query?",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Columbus, Ohio (us-east5)",
+                  "value": "us-east5"
+                },
+                {
+                  "label": "Iowa (us-central1)",
+                  "value": "us-central1"
+                },
+                {
+                  "label": "Las Vegas (us-west4)",
+                  "value": "us-west4"
+                },
+                {
+                  "label": "Los Angeles (us-west2)",
+                  "value": "us-west2"
+                },
+                {
+                  "label": "Montréal (northamerica-northeast1)",
+                  "value": "northamerica-northeast1"
+                },
+                {
+                  "label": "Northern Virginia (us-east4)",
+                  "value": "us-east4"
+                },
+                {
+                  "label": "Oregon (us-west1)",
+                  "value": "us-west1"
+                },
+                {
+                  "label": "Salt Lake City (us-west3)",
+                  "value": "us-west3"
+                },
+                {
+                  "label": "São Paulo (southamerica-east1)",
+                  "value": "southamerica-east1"
+                },
+                {
+                  "label": "Santiago (southamerica-west1)",
+                  "value": "southamerica-west1"
+                },
+                {
+                  "label": "South Carolina (us-east1)",
+                  "value": "us-east1"
+                },
+                {
+                  "label": "Toronto (northamerica-northeast2)",
+                  "value": "northamerica-northeast2"
+                },
+                {
+                  "label": "Delhi (asia-south2)",
+                  "value": "asia-south2"
+                },
+                {
+                  "label": "Hong Kong (asia-east2)",
+                  "value": "asia-east2"
+                },
+                {
+                  "label": "Jakarta (asia-southeast2)",
+                  "value": "asia-southeast2"
+                },
+                {
+                  "label": "Melbourne (australia-southeast2)",
+                  "value": "australia-southeast2"
+                },
+                {
+                  "label": "Mumbai (asia-south1)",
+                  "value": "asia-south1"
+                },
+                {
+                  "label": "Osaka (asia-northeast2)",
+                  "value": "asia-northeast2"
+                },
+                {
+                  "label": "Seoul (asia-northeast3)",
+                  "value": "asia-northeast3"
+                },
+                {
+                  "label": "Singapore (asia-southeast1)",
+                  "value": "asia-southeast1"
+                },
+                {
+                  "label": "Sydney (australia-southeast1)",
+                  "value": "australia-southeast1"
+                },
+                {
+                  "label": "Taiwan (asia-east1)",
+                  "value": "asia-east1"
+                },
+                {
+                  "label": "Tokyo (asia-northeast1)",
+                  "value": "asia-northeast1"
+                },
+                {
+                  "label": "Belgium (europe-west1)",
+                  "value": "europe-west1"
+                },
+                {
+                  "label": "Finland (europe-north1)",
+                  "value": "europe-north1"
+                },
+                {
+                  "label": "Frankfurt (europe-west3)",
+                  "value": "europe-west3"
+                },
+                {
+                  "label": "London (europe-west2)",
+                  "value": "europe-west2"
+                },
+                {
+                  "label": "Madrid (europe-southwest1)",
+                  "value": "europe-southwest1"
+                },
+                {
+                  "label": "Milan (europe-west8)",
+                  "value": "europe-west8"
+                },
+                {
+                  "label": "Netherlands (europe-west4)",
+                  "value": "europe-west4"
+                },
+                {
+                  "label": "Paris (europe-west9)",
+                  "value": "europe-west9"
+                },
+                {
+                  "label": "Warsaw (europe-central2)",
+                  "value": "europe-central2"
+                },
+                {
+                  "label": "Zürich (europe-west6)",
+                  "value": "europe-west6"
+                },
+                {
+                  "label": "US Multi-Region (US)",
+                  "value": "US"
+                },
+                {
+                  "label": "EU Mutli-Region (EU)",
+                  "value": "EU"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "US"
+        },
+        {
+          "name": "TRANSFER_CONFIG_NAME",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "PUB_SUB_TOPIC",
+          "label": "Pub/Sub Topic",
+          "description": "Which Pub/Sub topic should receive BigQuery Data Transfer completion notifications? Leave the default unless you are migrating from the bigquery-firestore-export extension, whose topic is named ext-<instance id>-processMessages. Pointing this at the extension's topic keeps the existing scheduled query's notification settings untouched.",
+          "input": {
+            "text": {
+              "nonEmpty": true,
+              "example": "ext-my-instance-processMessages",
+              "validationRegex": "^(?!goog)[a-zA-Z][a-zA-Z0-9\\-_.~+%]{2,254}$",
+              "validationErrorMessage": "Must be a Pub/Sub topic ID, not a full projects/<project>/topics/<topic> resource name. IDs are 3 to 255 characters, start with a letter, may contain letters, numbers and - _ . ~ + %, and cannot start with goog."
+            }
+          },
+          "type": "string",
+          "default": "kit-catalog-processMessages"
+        },
+        {
+          "name": "DATASET_ID",
+          "label": "Dataset ID",
+          "description": "What's the BigQuery destination dataset you'd like to use? Each transfer run will write to a table in this destination dataset.",
+          "input": {
+            "text": {
+              "nonEmpty": true,
+              "example": "customer_data"
+            }
+          },
+          "type": "string"
+        },
+        {
+          "name": "TABLE_NAME",
+          "label": "Destination Table Name",
+          "description": "What's the destination table name prefix you'd like to use? Each transfer run will write to the table with this name, postfixed with the runtime.",
+          "input": {
+            "text": {
+              "nonEmpty": true,
+              "example": "transactions"
+            }
+          },
+          "type": "string"
+        },
+        {
+          "name": "QUERY_STRING",
+          "label": "Query String",
+          "description": "What's the BQ query you'd like to execute?",
+          "input": {
+            "text": {
+              "nonEmpty": true,
+              "example": "SELECT * from <PROJECT_ID>.customer_data.transactions"
+            }
+          },
+          "type": "string"
+        },
+        {
+          "name": "DISPLAY_NAME",
+          "label": "Display Name",
+          "description": "What display name would you like to use?",
+          "input": {
+            "text": {
+              "nonEmpty": true,
+              "example": "Daily Rollup - Customer Transactions"
+            }
+          },
+          "type": "string"
+        },
+        {
+          "name": "PARTITIONING_FIELD",
+          "label": "Partitioning Field",
+          "description": "What's the partitioning field on the destination table ID? Leave empty if not using a partitioning field.",
+          "input": {
+            "text": {
+              "example": "timestamp"
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "SCHEDULE",
+          "label": "Schedule",
+          "description": "What's the execution schedule you'd like to use for this query?",
+          "input": {
+            "text": {
+              "nonEmpty": true,
+              "example": "every 15 minutes"
+            }
+          },
+          "type": "string"
+        },
+        {
+          "name": "COLLECTION_PATH",
+          "label": "Firestore Collection",
+          "description": "What's the top-level Firestore Collection to store transfer configs, run metadata, and query output?",
+          "input": {
+            "text": {
+              "example": "transferConfigs",
+              "validationRegex": "^[^\\/]+(\\/[^\\/]+\\/[^\\/]+)*$",
+              "validationErrorMessage": "Must be a valid Cloud Firestore Collection"
+            }
+          },
+          "type": "string",
+          "default": "transferConfigs"
+        },
+        {
+          "name": "LOG_LEVEL",
+          "label": "Log Level",
+          "description": "What's the log level you'd like to use for this extension?",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "DEBUG",
+                  "value": "debug"
+                },
+                {
+                  "label": "INFO",
+                  "value": "info"
+                },
+                {
+                  "label": "WARN",
+                  "value": "warn"
+                },
+                {
+                  "label": "ERROR",
+                  "value": "error"
+                },
+                {
+                  "label": "SILENT",
+                  "value": "silent"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "info"
+        }
+      ],
+      "roles": [
+        "roles/datastore.user",
+        "roles/bigquery.admin",
+        "roles/pubsub.admin",
+        "roles/eventarc.eventReceiver",
+        "roles/run.invoker"
+      ],
+      "apis": [
+        {
+          "api": "firestore.googleapis.com",
+          "reason": "Writes BigQuery export run state to Cloud Firestore."
+        },
+        {
+          "api": "bigquery.googleapis.com",
+          "reason": "Runs scheduled queries and reads their destination tables."
+        },
+        {
+          "api": "bigquerydatatransfer.googleapis.com",
+          "reason": "Creates and reconciles the scheduled-query transfer config."
+        },
+        {
+          "api": "pubsub.googleapis.com",
+          "reason": "Delivers BigQuery transfer-completion notifications."
+        },
+        {
+          "api": "cloudtasks.googleapis.com",
+          "reason": "Needed for task queue functions"
+        }
+      ],
+      "lifecycleHooks": [
+        "afterFirstDeploy",
+        "afterRedeploy"
+      ]
     },
     {
       "id": "delete-user-data",
       "name": "Delete User Data",
-      "summary": "Delete the data of a user from Cloud Firestore, Realtime Database and Cloud Storage when the account is deleted. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Delete the data of a user from Cloud Firestore, Realtime Database and Cloud Storage when the account is deleted. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/delete-user-data",
-      "version": "0.0.1",
-      "status": "announced",
-      "integrity": "sha512-uOwoECkZdj4gDK/WMoTX/RNz/GVfgDuzpgG6uJ6ukIlDD2LBf8pDrKiqr97zaiSlzpkGnbOvGerUH4IqTHsLaQ==",
+      "version": "0.0.2-rc.8",
+      "status": "preview",
+      "integrity": "sha512-nwL/7VjBA6uuJXzb2HNeY+lUKFroh2GovFQ7lAP93+oFYvSLRijFU2j+p994p8cc9lvj2e9ZNfRhTNqQxrDIaw==",
       "license": "Apache-2.0",
-      "repository": "https://github.com/firebase/extensions",
-      "homepage": "https://github.com/firebase/extensions#readme",
-      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/delete-user-data/v/0.0.1",
+      "repository": "https://github.com/firebase/extensions/tree/HEAD/kits/delete-user-data",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/delete-user-data/v/0.0.2-rc.8",
+      "readme": "readme/delete-user-data.md",
       "categories": [
         "security"
       ],
@@ -57,7 +397,219 @@
       "replaces": [
         "firebase/delete-user-data"
       ],
-      "node": ">=22"
+      "node": ">=22",
+      "firebaseFunctions": "7.3.3-rc.4",
+      "functions": [
+        {
+          "name": "clearData",
+          "trigger": "auth",
+          "eventType": "google.firebase.auth.user.v2.deleted"
+        },
+        {
+          "name": "handleDeletion",
+          "trigger": "pubsub",
+          "eventType": "google.cloud.pubsub.topic.v1.messagePublished",
+          "resource": "{{ params.DELETION_TOPIC_NAME }}"
+        },
+        {
+          "name": "handleSearch",
+          "trigger": "pubsub",
+          "eventType": "google.cloud.pubsub.topic.v1.messagePublished",
+          "resource": "{{ params.DISCOVERY_TOPIC_NAME }}"
+        }
+      ],
+      "params": [
+        {
+          "name": "FIRESTORE_PATHS",
+          "label": "Cloud Firestore paths",
+          "description": "Which paths in your Cloud Firestore instance contain data keyed on a user ID? Leave empty if you don't use Cloud Firestore.\nEnter the full paths, separated by commas. Use `{UID}` as a placeholder for the user's UID.\nFor example, if you have the collections `users` and `admins`, and each collection has documents with User ID as document IDs, then enter `users/{UID},admins/{UID}`.",
+          "input": {
+            "text": {
+              "example": "users/{UID},admins/{UID}"
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "FIRESTORE_DATABASE_ID",
+          "label": "Firestore Database ID",
+          "description": "The ID of the Firestore database to use. Use \"(default)\" for the default database. You can view your available Firestore databases at https://console.cloud.google.com/firestore/databases.",
+          "type": "string",
+          "default": "(default)"
+        },
+        {
+          "name": "FIRESTORE_DELETE_MODE",
+          "label": "Cloud Firestore delete mode",
+          "description": "(Only applicable if you use the `Cloud Firestore paths` parameter.) How do you want to delete Cloud Firestore documents? To also delete documents in subcollections, set this parameter to `recursive`.",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Recursive",
+                  "value": "recursive"
+                },
+                {
+                  "label": "Shallow",
+                  "value": "shallow"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "shallow"
+        },
+        {
+          "name": "SELECTED_DATABASE_INSTANCE",
+          "label": "Realtime Database instance",
+          "description": "What is the ID of the Realtime Database instance from which you want to delete user data (keyed on user ID)?",
+          "input": {
+            "text": {
+              "example": "my-instance",
+              "validationRegex": "^(?:[^\\.\\$\\#\\]\\[\\/\\x00-\\x1F\\x7F]+|)$",
+              "validationErrorMessage": "Invalid database instance. Make sure that you have entered just the instance ID, and not the entire database URL."
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "SELECTED_DATABASE_LOCATION",
+          "label": "Realtime Database location",
+          "description": "(Only applicable if you provided the `Realtime Database instance` parameter.) From which Realtime Database location do you want to delete data keyed on a user ID?",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "United States",
+                  "value": "us-central1"
+                },
+                {
+                  "label": "Belgium",
+                  "value": "europe-west1"
+                },
+                {
+                  "label": "Singapore",
+                  "value": "asia-southeast1"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "us-central1"
+        },
+        {
+          "name": "RTDB_PATHS",
+          "label": "Realtime Database paths",
+          "description": "Which paths in your Realtime Database instance contain data keyed on a user ID? Leave empty if you don't use Realtime Database.\nEnter the full paths, separated by commas. Use `{UID}` as a placeholder for the user's UID.\nFor example: `users/{UID},admins/{UID}`.",
+          "input": {
+            "text": {
+              "example": "users/{UID},admins/{UID}"
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "CLOUD_STORAGE_BUCKET",
+          "label": "Cloud Storage bucket",
+          "description": "Which Google Cloud Storage bucket do you want to delete files from?",
+          "input": {
+            "text": {
+              "example": "my-project-12345.appspot.com",
+              "validationRegex": "^([0-9a-z_.-]*)$",
+              "validationErrorMessage": "Invalid storage bucket"
+            }
+          },
+          "type": "string",
+          "default": "{{ params.STORAGE_BUCKET }}"
+        },
+        {
+          "name": "STORAGE_PATHS",
+          "label": "Cloud Storage paths",
+          "description": "Where in Google Cloud Storage do you store data keyed on a user ID? Leave empty if you don't use Cloud Storage.\nEnter the full paths to files or directories in your Storage buckets, separated by commas. Use `{UID}` to represent the User ID of the deleted user, and use `{DEFAULT}` to represent your default Storage bucket.\nHere's a series of examples. To delete all the files in your default bucket with the file naming scheme `{UID}-pic.png`, enter `{DEFAULT}/{UID}-pic.png`. To also delete all the files in another bucket called my-app-logs with the file naming scheme `{UID}-logs.txt`, enter `{DEFAULT}/{UID}-pic.png,my-app-logs/{UID}-logs.txt`. To *also* delete a User ID-labeled directory and all its files (like `media/{UID}`), enter `{DEFAULT}/{UID}-pic.png,my-app-logs/{UID}-logs.txt,{DEFAULT}/media/{UID}`.",
+          "input": {
+            "text": {
+              "example": "{DEFAULT}/{UID}-pic.png,my-awesome-app-logs/{UID}-logs.txt"
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "ENABLE_AUTO_DISCOVERY",
+          "label": "Enable auto discovery",
+          "description": "Enable the extension to automatically discover Firestore collections and documents to delete.",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Yes",
+                  "value": "yes"
+                },
+                {
+                  "label": "No",
+                  "value": "no"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "no"
+        },
+        {
+          "name": "AUTO_DISCOVERY_SEARCH_DEPTH",
+          "label": "Auto discovery search depth",
+          "description": "If auto discovery is enabled, how deep should auto discovery find collections and documents. For example, setting to `1` would only discover root collections and documents, whereas setting to `9` would search sub-collections 9 levels deep. Defaults to `3`.",
+          "type": "int",
+          "default": 3
+        },
+        {
+          "name": "AUTO_DISCOVERY_SEARCH_FIELDS",
+          "label": "Auto discovery search fields",
+          "description": "If auto discovery is enabled, specify what document fields are used to associate the UID with the document. The extension will delete documents where the value for one or more of these fields matches the deleting user’s UID. If left empty, document fields will not be used in auto discovery.",
+          "type": "string",
+          "default": "id,uid,userId"
+        },
+        {
+          "name": "SEARCH_FUNCTION",
+          "label": "Search function URL",
+          "description": "Specify a URL to call that will return a list of document paths to delete. The extension will send a `POST` request to the specified `URL`, with the `uid` of the deleted user will be provided in the body of the request. The endpoint specified should return an array of firestore paths to delete.",
+          "input": {
+            "text": {
+              "example": "https://us-west1-my-project-id.cloudfunctions.net/myTransformFunction"
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "DISCOVERY_TOPIC_NAME",
+          "type": "string",
+          "default": "kit-catalog-discovery"
+        },
+        {
+          "name": "DELETION_TOPIC_NAME",
+          "type": "string",
+          "default": "kit-catalog-deletion"
+        }
+      ],
+      "roles": [
+        "roles/datastore.owner",
+        "roles/firebasedatabase.admin",
+        "roles/storage.admin",
+        "roles/pubsub.admin",
+        "roles/eventarc.eventReceiver",
+        "roles/run.invoker",
+        "roles/eventarc.publisher"
+      ],
+      "apis": [
+        {
+          "api": "firestore.googleapis.com",
+          "reason": "Deletes user data from Cloud Firestore."
+        }
+      ],
+      "lifecycleHooks": []
     },
     {
       "id": "firestore-bigquery-export",
@@ -868,16 +1420,16 @@
     {
       "id": "firestore-bundle-builder",
       "name": "Firestore Bundle Builder",
-      "summary": "Build and serve Firestore data bundles from an HTTP endpoint. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Build and serve Firestore data bundles from an HTTP endpoint. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/firestore-bundle-builder",
-      "version": "0.0.1",
-      "status": "announced",
-      "integrity": "sha512-FMN/1WZ41QO7zia7c0VzImR/3v0RNJ7L99uXHMt+nsy5DNsFY6MGp71VkJq5yHMu3/f4NFBAVaSsjGPgMdMJlw==",
+      "version": "0.0.2-rc.3",
+      "status": "preview",
+      "integrity": "sha512-jI6xIE0te/DiFDvLs7+wNBMnIw18EJU8DJAmrutXaq5HoKMEQeW9HukFg5SObyhxtHA1Gv5PpyWT57jsy/4XiQ==",
       "license": "Apache-2.0",
-      "repository": "https://github.com/firebase/extensions",
-      "homepage": "https://github.com/firebase/extensions#readme",
-      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-bundle-builder/v/0.0.1",
+      "repository": "https://github.com/firebase/extensions/tree/HEAD/kits/firestore-bundle-builder",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-bundle-builder/v/0.0.2-rc.3",
+      "readme": "readme/firestore-bundle-builder.md",
       "categories": [
         "utilities"
       ],
@@ -885,21 +1437,58 @@
       "replaces": [
         "firebase/firestore-bundle-builder"
       ],
-      "node": ">=22"
+      "node": ">=22",
+      "firebaseFunctions": "7.3.3-rc.0",
+      "functions": [
+        {
+          "name": "serve",
+          "trigger": "https"
+        }
+      ],
+      "params": [
+        {
+          "name": "BUNDLESPEC_COLLECTION",
+          "type": "string",
+          "default": "bundles"
+        },
+        {
+          "name": "BUNDLE_STORAGE_BUCKET",
+          "type": "string",
+          "default": "{{ params.STORAGE_BUCKET }}"
+        },
+        {
+          "name": "STORAGE_PREFIX",
+          "type": "string",
+          "default": "bundles"
+        }
+      ],
+      "roles": [
+        "roles/datastore.user",
+        "roles/storage.objectAdmin",
+        "roles/eventarc.eventReceiver",
+        "roles/run.invoker"
+      ],
+      "apis": [
+        {
+          "api": "firestore.googleapis.com",
+          "reason": "Reads bundle specifications and document data from Cloud Firestore."
+        }
+      ],
+      "lifecycleHooks": []
     },
     {
       "id": "firestore-counter",
       "name": "Distributed Counter",
-      "summary": "Count documents and events at high rates with sharded counters in Firestore. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Count documents and events at high rates with sharded counters in Firestore. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/firestore-counter",
-      "version": "0.0.1",
-      "status": "announced",
-      "integrity": "sha512-FzQYkddnLjaubQJ2kPmZWexDE67cESfHAQ9QXuVnllPb4OasSxLM/+CSbPWSK/C8O/Q+rudPKSYpg6pkPLFWlQ==",
+      "version": "0.0.2-rc.7",
+      "status": "preview",
+      "integrity": "sha512-JBq4L7MjzLTk/cfuLtbSwi4kHO1Q2vAhdthATwAnT1lMb/w6SGL2J4ojLc6fzDx9kF4dbfl0JjyLZ0VW+3uniw==",
       "license": "Apache-2.0",
-      "repository": "https://github.com/firebase/extensions",
-      "homepage": "https://github.com/firebase/extensions#readme",
-      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-counter/v/0.0.1",
+      "repository": "https://github.com/firebase/extensions/tree/HEAD/kits/firestore-counter",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-counter/v/0.0.2-rc.7",
+      "readme": "readme/firestore-counter.md",
       "categories": [
         "utilities"
       ],
@@ -907,21 +1496,88 @@
       "replaces": [
         "firebase/firestore-counter"
       ],
-      "node": ">=22"
+      "node": ">=22",
+      "firebaseFunctions": "7.3.3-rc.4",
+      "functions": [
+        {
+          "name": "controllerCore",
+          "trigger": "scheduled",
+          "schedule": "every {{ params.SCHEDULE_FREQUENCY }} minutes"
+        },
+        {
+          "name": "onWrite",
+          "trigger": "firestore",
+          "eventType": "google.cloud.firestore.document.v1.written",
+          "resource": "{collection}/{counter=**}/_counter_shards_/{shardId}"
+        },
+        {
+          "name": "worker",
+          "trigger": "firestore",
+          "eventType": "google.cloud.firestore.document.v1.written",
+          "resource": "{{ params.INTERNAL_STATE_PATH }}/workers/{workerId}"
+        }
+      ],
+      "params": [
+        {
+          "name": "INTERNAL_STATE_PATH",
+          "label": "Document path for internal state",
+          "description": "What is the path to the document where the extension can keep its internal state?",
+          "input": {
+            "text": {
+              "example": "_firebase_ext_/sharded_counter",
+              "validationRegex": "^[^\\/]+\\/[^\\/]+(\\/[^\\/]+\\/[^\\/]+)*$",
+              "validationErrorMessage": "Enter a document path, not a collection path. The path must have an even number of segments, for example, `my_collection/doc` or `my_collection/doc/subcollection/doc`, but not `my_collection`."
+            }
+          },
+          "type": "string",
+          "default": "_firebase_ext_/sharded_counter"
+        },
+        {
+          "name": "SCHEDULE_FREQUENCY",
+          "label": "Frequency for controllerCore function to be run",
+          "description": "In minutes, how often should the function to aggregate shards be run?",
+          "input": {
+            "text": {
+              "validationRegex": "^[1-9][0-9]*$",
+              "validationErrorMessage": "The number of minutes must be an integer value greater than zero."
+            }
+          },
+          "type": "string",
+          "default": "1"
+        }
+      ],
+      "roles": [
+        "roles/datastore.user",
+        "roles/cloudscheduler.admin",
+        "roles/eventarc.eventReceiver",
+        "roles/run.invoker",
+        "roles/eventarc.publisher"
+      ],
+      "apis": [
+        {
+          "api": "firestore.googleapis.com",
+          "reason": "Reads and writes counter shards in Cloud Firestore."
+        },
+        {
+          "api": "cloudscheduler.googleapis.com",
+          "reason": "Needed for scheduled functions."
+        }
+      ],
+      "lifecycleHooks": []
     },
     {
       "id": "firestore-genai-chatbot",
       "name": "Build Chatbot with the Gemini API",
-      "summary": "A conversational chatbot backed by Firestore and the Gemini API. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "A conversational chatbot backed by Firestore and the Gemini API. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/firestore-genai-chatbot",
-      "version": "0.0.1",
-      "status": "announced",
-      "integrity": "sha512-Y6Wjlkf1vvgZvJ0IExocJom99R4YsorPdHAk6Q0cFGnkJ2dzLWgn5c8QJ2XZzYQpZ2LrWDCmzJPobKlmT9b7Ug==",
+      "version": "0.0.2-rc.3",
+      "status": "preview",
+      "integrity": "sha512-OKWnnZR7wq7mC4rgMJYD/iyzUWPl42Vb7u6QBZYnYLemIIK9R2AWDJj5aq1IttHsp4cil/VTqKZON1jdNeuo9Q==",
       "license": "Apache-2.0",
-      "repository": "https://github.com/firebase/extensions",
-      "homepage": "https://github.com/firebase/extensions#readme",
-      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-genai-chatbot/v/0.0.1",
+      "repository": "https://github.com/firebase/extensions/tree/HEAD/kits/firestore-genai-chatbot",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-genai-chatbot/v/0.0.2-rc.3",
+      "readme": "readme/firestore-genai-chatbot.md",
       "categories": [
         "ai"
       ],
@@ -930,21 +1586,525 @@
         "firebase/firestore-genai-chatbot",
         "googlecloud/firestore-genai-chatbot"
       ],
-      "node": ">=22"
+      "node": ">=22",
+      "firebaseFunctions": "7.3.3-rc.0",
+      "functions": [
+        {
+          "name": "generateMessage",
+          "trigger": "firestore",
+          "eventType": "google.cloud.firestore.document.v1.written",
+          "resource": "{{ params.COLLECTION_NAME }}/{messageId}"
+        }
+      ],
+      "params": [
+        {
+          "name": "GENERATIVE_AI_PROVIDER",
+          "label": "Gemini API Provider",
+          "description": "This extension makes use of the Gemini family of generative models. For Google AI you will require an API key, whereas Vertex AI will authenticate using application default credentials. For more information see the [docs](https://firebase.google.com/docs/admin/setup#initialize-sdk).",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Google AI",
+                  "value": "google-ai"
+                },
+                {
+                  "label": "Vertex AI",
+                  "value": "vertex-ai"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "google-ai"
+        },
+        {
+          "type": "secret",
+          "name": "API_KEY",
+          "label": "Google AI API Key",
+          "description": "If you have selected Google AI as your provider, then this parameter is required. If you have instead selected Vertex AI, then this parameter is not required, and application default credentials will be used."
+        },
+        {
+          "name": "MODEL",
+          "label": "Gemini model",
+          "description": "Input the name of the Gemini model you would like to use. To view available models for each provider, see: [Vertex AI Gemini models](https://cloud.google.com/vertex-ai/docs/generative-ai/learn/models), [Google AI Gemini models](https://ai.google.dev/models/gemini). Note: Any models in preview on Vertex AI will require Vertex AI Model Location to be set to 'global'.",
+          "type": "string",
+          "default": "gemini-2.5-flash"
+        },
+        {
+          "name": "VERTEX_AI_MODEL_LOCATION",
+          "label": "Vertex AI Model Location",
+          "description": "If you are using Vertex AI as your provider, which location should be used for the Vertex AI API? This can differ from the Cloud Functions location.\nIf not specified, defaults to the Cloud Functions location. Note: Models in preview on Vertex AI require 'Global'. See [available locations](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/locations).",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Same as Cloud Functions Location (default)",
+                  "value": "null"
+                },
+                {
+                  "label": "Global (required for preview models)",
+                  "value": "global"
+                },
+                {
+                  "label": "Columbus, Ohio (us-east5)",
+                  "value": "us-east5"
+                },
+                {
+                  "label": "Dallas, Texas (us-south1)",
+                  "value": "us-south1"
+                },
+                {
+                  "label": "Iowa (us-central1)",
+                  "value": "us-central1"
+                },
+                {
+                  "label": "Las Vegas, Nevada (us-west4)",
+                  "value": "us-west4"
+                },
+                {
+                  "label": "Moncks Corner, South Carolina (us-east1)",
+                  "value": "us-east1"
+                },
+                {
+                  "label": "Northern Virginia (us-east4)",
+                  "value": "us-east4"
+                },
+                {
+                  "label": "Oregon (us-west1)",
+                  "value": "us-west1"
+                },
+                {
+                  "label": "Montréal (northamerica-northeast1)",
+                  "value": "northamerica-northeast1"
+                },
+                {
+                  "label": "São Paulo, Brazil (southamerica-east1)",
+                  "value": "southamerica-east1"
+                },
+                {
+                  "label": "Netherlands (europe-west4)",
+                  "value": "europe-west4"
+                },
+                {
+                  "label": "Paris, France (europe-west9)",
+                  "value": "europe-west9"
+                },
+                {
+                  "label": "London, United Kingdom (europe-west2)",
+                  "value": "europe-west2"
+                },
+                {
+                  "label": "Frankfurt, Germany (europe-west3)",
+                  "value": "europe-west3"
+                },
+                {
+                  "label": "Belgium (europe-west1)",
+                  "value": "europe-west1"
+                },
+                {
+                  "label": "Zürich, Switzerland (europe-west6)",
+                  "value": "europe-west6"
+                },
+                {
+                  "label": "Madrid, Spain (europe-southwest1)",
+                  "value": "europe-southwest1"
+                },
+                {
+                  "label": "Milan, Italy (europe-west8)",
+                  "value": "europe-west8"
+                },
+                {
+                  "label": "Finland (europe-north1)",
+                  "value": "europe-north1"
+                },
+                {
+                  "label": "Warsaw, Poland (europe-central2)",
+                  "value": "europe-central2"
+                },
+                {
+                  "label": "Tokyo, Japan (asia-northeast1)",
+                  "value": "asia-northeast1"
+                },
+                {
+                  "label": "Sydney, Australia (australia-southeast1)",
+                  "value": "australia-southeast1"
+                },
+                {
+                  "label": "Singapore (asia-southeast1)",
+                  "value": "asia-southeast1"
+                },
+                {
+                  "label": "Seoul, Korea (asia-northeast3)",
+                  "value": "asia-northeast3"
+                },
+                {
+                  "label": "Taiwan (asia-east1)",
+                  "value": "asia-east1"
+                },
+                {
+                  "label": "Hong Kong, China (asia-east2)",
+                  "value": "asia-east2"
+                },
+                {
+                  "label": "Mumbai, India (asia-south1)",
+                  "value": "asia-south1"
+                },
+                {
+                  "label": "Dammam, Saudi Arabia (me-central2)",
+                  "value": "me-central2"
+                },
+                {
+                  "label": "Doha, Qatar (me-central1)",
+                  "value": "me-central1"
+                },
+                {
+                  "label": "Tel Aviv, Israel (me-west1)",
+                  "value": "me-west1"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "null"
+        },
+        {
+          "name": "COLLECTION_NAME",
+          "label": "Firestore Collection Path",
+          "description": "Used to store conversation history represented as documents. This extension will listen to the specified collection(s) for new message documents.",
+          "input": {
+            "text": {
+              "validationRegex": "^[^\\/]+(\\/[^\\/]+\\/[^\\/]+)*$",
+              "validationErrorMessage": "Must be a valid Cloud Firestore Collection"
+            }
+          },
+          "type": "string",
+          "default": "generate"
+        },
+        {
+          "name": "PROMPT_FIELD",
+          "label": "Prompt Field",
+          "description": "The field in the message document that contains the prompt.",
+          "input": {
+            "text": {
+              "example": "prompt"
+            }
+          },
+          "type": "string",
+          "default": "prompt"
+        },
+        {
+          "name": "RESPONSE_FIELD",
+          "label": "Response Field",
+          "description": "The field in the message document into which to put the response.",
+          "input": {
+            "text": {
+              "example": "response"
+            }
+          },
+          "type": "string",
+          "default": "response"
+        },
+        {
+          "name": "ORDER_FIELD",
+          "label": "Order Field",
+          "description": "The field by which to order when fetching conversation history. If absent when processing begins, the current timestamp will be written to this field. Sorting will be in descending order.",
+          "input": {
+            "text": {
+              "example": "createTime"
+            }
+          },
+          "type": "string",
+          "default": "createTime"
+        },
+        {
+          "name": "CANDIDATES_FIELD",
+          "label": "Candidates field",
+          "description": "The field in the message document into which to put the other candidate responses if the candidate count parameter is greater than one.",
+          "type": "string",
+          "default": "candidates"
+        },
+        {
+          "name": "CONTEXT",
+          "label": "Context",
+          "description": "Contextual preamble for the generative AI model. A string giving context for the discussion.",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "TEMPERATURE",
+          "label": "Temperature",
+          "description": "Controls the randomness of the output. Values can range over [0,1], inclusive. A value closer to 1 will produce responses that are more varied, while a value closer to 0 will typically result in less surprising responses from the model.",
+          "input": {
+            "text": {
+              "validationRegex": "^(?:0*(?:\\.\\d+)?|1(\\.0*)?)$",
+              "validationErrorMessage": "Please specify a decimal representation of a number between 0 and 1."
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "TOP_P",
+          "label": "Nucleus sampling probability",
+          "description": "If specified, nucleus sampling will be used as the decoding strategy. Nucleus sampling considers the smallest set of tokens whose probability sum is at least a fixed value. Enter a value between 0 and 1.",
+          "input": {
+            "text": {
+              "validationRegex": "^(?:0*(?:\\.\\d+)?|1(\\.0*)?)$",
+              "validationErrorMessage": "Please specify a decimal representation of a number between 0 and 1."
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "TOP_K",
+          "label": "Sampling strategy parameter",
+          "description": "If specified, top-k sampling will be used as the decoding strategy. Top-k sampling considers the set of topK most probable tokens.",
+          "input": {
+            "text": {
+              "validationRegex": "^[1-9][0-9]*|^$",
+              "validationErrorMessage": "Please specify a positive integer."
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "CANDIDATE_COUNT",
+          "label": "Candidate count",
+          "description": "The default value is one. When set to an integer higher than one, additional candidate responses, up to the specified number, will be stored in Firestore under the 'candidates' field.",
+          "input": {
+            "text": {
+              "validationRegex": "^[1-9][0-9]*|^$",
+              "validationErrorMessage": "Please specify a positive integer."
+            }
+          },
+          "type": "string",
+          "default": "1"
+        },
+        {
+          "name": "MAX_OUTPUT_TOKENS",
+          "label": "Max Output Tokens",
+          "description": "If specified, this parameter is passed to the Gemini API to control the length of the response.",
+          "input": {
+            "text": {
+              "validationRegex": "^[1-9][0-9]*|^$",
+              "validationErrorMessage": "Please specify a positive integer."
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "ENABLE_DISCUSSION_OPTION_OVERRIDES",
+          "label": "Enable per document overrides.",
+          "description": "If set to \"Yes\", discussion parameters may be overwritten by fields in the discussion collection.",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Yes",
+                  "value": "yes"
+                },
+                {
+                  "label": "No",
+                  "value": "no"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "no"
+        },
+        {
+          "name": "ENABLE_GENKIT_MONITORING",
+          "label": "Enable Genkit Monitoring",
+          "description": "If set to \"Yes\", enables Genkit Monitoring for collecting and viewing real-time telemetry data. This requires the Cloud Logging API, Cloud Trace API, and Cloud Monitoring API to be enabled, and appropriate IAM roles to be configured. See the documentation for more details.",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Yes",
+                  "value": "yes"
+                },
+                {
+                  "label": "No",
+                  "value": "no"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "no"
+        },
+        {
+          "name": "HARM_CATEGORY_HATE_SPEECH",
+          "label": "Hate Speech Threshold",
+          "description": "Threshold for hate speech content. Specify what probability level of hate speech content is blocked by the Gemini provider.",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Default",
+                  "value": "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
+                },
+                {
+                  "label": "Block low and above",
+                  "value": "BLOCK_LOW_AND_ABOVE"
+                },
+                {
+                  "label": "Block medium and above",
+                  "value": "BLOCK_MEDIUM_AND_ABOVE"
+                },
+                {
+                  "label": "Block only high",
+                  "value": "BLOCK_ONLY_HIGH"
+                },
+                {
+                  "label": "Block none",
+                  "value": "BLOCK_NONE"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
+        },
+        {
+          "name": "HARM_CATEGORY_DANGEROUS_CONTENT",
+          "label": "Dangerous Content Threshold",
+          "description": "Threshold for dangerous content. Specify what probability level of dangerous content is blocked by the Gemini provider.",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Default",
+                  "value": "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
+                },
+                {
+                  "label": "Block low and above",
+                  "value": "BLOCK_LOW_AND_ABOVE"
+                },
+                {
+                  "label": "Block medium and above",
+                  "value": "BLOCK_MEDIUM_AND_ABOVE"
+                },
+                {
+                  "label": "Block only high",
+                  "value": "BLOCK_ONLY_HIGH"
+                },
+                {
+                  "label": "Block none",
+                  "value": "BLOCK_NONE"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
+        },
+        {
+          "name": "HARM_CATEGORY_HARASSMENT",
+          "label": "Harassment Content Threshold",
+          "description": "Threshold for harassment content. Specify what probability level of harassment content is blocked by the Gemini provider.",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Default",
+                  "value": "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
+                },
+                {
+                  "label": "Block low and above",
+                  "value": "BLOCK_LOW_AND_ABOVE"
+                },
+                {
+                  "label": "Block medium and above",
+                  "value": "BLOCK_MEDIUM_AND_ABOVE"
+                },
+                {
+                  "label": "Block only high",
+                  "value": "BLOCK_ONLY_HIGH"
+                },
+                {
+                  "label": "Block none",
+                  "value": "BLOCK_NONE"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
+        },
+        {
+          "name": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+          "label": "Sexual Content Threshold",
+          "description": "Threshold for sexually explicit content. Specify what probability level of sexual content is blocked by the Gemini provider.",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Default",
+                  "value": "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
+                },
+                {
+                  "label": "Block low and above",
+                  "value": "BLOCK_LOW_AND_ABOVE"
+                },
+                {
+                  "label": "Block medium and above",
+                  "value": "BLOCK_MEDIUM_AND_ABOVE"
+                },
+                {
+                  "label": "Block only high",
+                  "value": "BLOCK_ONLY_HIGH"
+                },
+                {
+                  "label": "Block none",
+                  "value": "BLOCK_NONE"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
+        }
+      ],
+      "roles": [
+        "roles/datastore.user",
+        "roles/aiplatform.user",
+        "roles/monitoring.metricWriter",
+        "roles/cloudtrace.agent",
+        "roles/logging.logWriter",
+        "roles/eventarc.eventReceiver",
+        "roles/run.invoker"
+      ],
+      "apis": [
+        {
+          "api": "firestore.googleapis.com",
+          "reason": "Receives document change events from Cloud Firestore and writes generated responses back."
+        },
+        {
+          "api": "aiplatform.googleapis.com",
+          "reason": "For access to the Vertex AI Gemini API if this provider is chosen."
+        }
+      ],
+      "lifecycleHooks": []
     },
     {
       "id": "firestore-incremental-capture",
       "name": "Firestore Incremental Capture",
-      "summary": "Capture every change of a Firestore database for point-in-time backups and restores. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Capture every change of a Firestore database for point-in-time backups and restores. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/firestore-incremental-capture",
-      "version": "0.0.1",
-      "status": "announced",
-      "integrity": "sha512-mshrJFOu2v5BmdntyGQquajMIIJq7xkZnT5HU8+KvbSkuXjfdoLjA36tHDMtviUFlmK3jjNfDjpciNZ5NRuuZg==",
+      "version": "0.0.2-rc.3",
+      "status": "preview",
+      "integrity": "sha512-GOZ10QqMjVGD4zb7AfqukBVOIJkmwt/dGT9Dhw6chiPipUiC3NMw6makFZj1fUzGXEPPALH59jg46T54EH8HUw==",
       "license": "Apache-2.0",
-      "repository": "https://github.com/firebase/extensions",
-      "homepage": "https://github.com/firebase/extensions#readme",
-      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-incremental-capture/v/0.0.1",
+      "repository": "https://github.com/firebase/extensions/tree/HEAD/kits/firestore-incremental-capture",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-incremental-capture/v/0.0.2-rc.3",
+      "readme": "readme/firestore-incremental-capture.md",
       "categories": [
         "utilities"
       ],
@@ -953,21 +2113,305 @@
         "firebase/firestore-incremental-capture",
         "googlecloud/firestore-incremental-capture"
       ],
-      "node": ">=22"
+      "node": "22",
+      "firebaseFunctions": "7.3.3-rc.0",
+      "functions": [
+        {
+          "name": "initIncrementalCapture",
+          "trigger": "taskQueue"
+        },
+        {
+          "name": "onHttpRunRestoration",
+          "trigger": "https"
+        },
+        {
+          "name": "runRestorationTask",
+          "trigger": "taskQueue"
+        },
+        {
+          "name": "syncChangelogTask",
+          "trigger": "taskQueue"
+        },
+        {
+          "name": "syncData",
+          "trigger": "firestore",
+          "eventType": "google.cloud.firestore.document.v1.written",
+          "resource": "{{ params.SYNC_COLLECTION_PATH }}/{documentId}"
+        }
+      ],
+      "params": [
+        {
+          "name": "LOCATION",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "value": "us-central1"
+                },
+                {
+                  "value": "us-east1"
+                },
+                {
+                  "value": "us-east4"
+                },
+                {
+                  "value": "us-west2"
+                },
+                {
+                  "value": "us-west3"
+                },
+                {
+                  "value": "us-west4"
+                },
+                {
+                  "value": "europe-central2"
+                },
+                {
+                  "value": "europe-west1"
+                },
+                {
+                  "value": "europe-west2"
+                },
+                {
+                  "value": "europe-west3"
+                },
+                {
+                  "value": "europe-west6"
+                },
+                {
+                  "value": "asia-east1"
+                },
+                {
+                  "value": "asia-east2"
+                },
+                {
+                  "value": "asia-northeast1"
+                },
+                {
+                  "value": "asia-northeast2"
+                },
+                {
+                  "value": "asia-northeast3"
+                },
+                {
+                  "value": "asia-south1"
+                },
+                {
+                  "value": "asia-southeast1"
+                },
+                {
+                  "value": "asia-southeast2"
+                },
+                {
+                  "value": "northamerica-northeast1"
+                },
+                {
+                  "value": "southamerica-east1"
+                },
+                {
+                  "value": "australia-southeast1"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "us-central1"
+        },
+        {
+          "name": "SYNC_COLLECTION_PATH",
+          "type": "string",
+          "default": "posts"
+        },
+        {
+          "name": "SYNC_DATASET",
+          "type": "string",
+          "default": "backup_dataset"
+        },
+        {
+          "name": "SYNC_TABLE",
+          "type": "string",
+          "default": "backup_table"
+        },
+        {
+          "name": "BACKUP_INSTANCE_ID",
+          "type": "string"
+        },
+        {
+          "name": "DATASET_LOCATION",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "value": "us"
+                },
+                {
+                  "value": "eu"
+                },
+                {
+                  "value": "us-central1"
+                },
+                {
+                  "value": "us-east1"
+                },
+                {
+                  "value": "us-east4"
+                },
+                {
+                  "value": "us-west1"
+                },
+                {
+                  "value": "us-west2"
+                },
+                {
+                  "value": "us-west3"
+                },
+                {
+                  "value": "us-west4"
+                },
+                {
+                  "value": "northamerica-northeast1"
+                },
+                {
+                  "value": "southamerica-east1"
+                },
+                {
+                  "value": "europe-central2"
+                },
+                {
+                  "value": "europe-north1"
+                },
+                {
+                  "value": "europe-west1"
+                },
+                {
+                  "value": "europe-west2"
+                },
+                {
+                  "value": "europe-west3"
+                },
+                {
+                  "value": "europe-west4"
+                },
+                {
+                  "value": "europe-west6"
+                },
+                {
+                  "value": "asia-east1"
+                },
+                {
+                  "value": "asia-east2"
+                },
+                {
+                  "value": "asia-northeast1"
+                },
+                {
+                  "value": "asia-northeast2"
+                },
+                {
+                  "value": "asia-northeast3"
+                },
+                {
+                  "value": "asia-south1"
+                },
+                {
+                  "value": "asia-southeast1"
+                },
+                {
+                  "value": "asia-southeast2"
+                },
+                {
+                  "value": "australia-southeast1"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "us"
+        },
+        {
+          "name": "DATAFLOW_REGION",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "BUCKET_NAME",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "LOG_LEVEL",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "value": "debug"
+                },
+                {
+                  "value": "info"
+                },
+                {
+                  "value": "warn"
+                },
+                {
+                  "value": "error"
+                },
+                {
+                  "value": "silent"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "info"
+        }
+      ],
+      "roles": [
+        "roles/bigquery.dataEditor",
+        "roles/bigquery.user",
+        "roles/datastore.user",
+        "roles/dataflow.developer",
+        "roles/eventarc.eventReceiver",
+        "roles/run.invoker",
+        "roles/cloudtasks.enqueuer",
+        "roles/iam.serviceAccountUser",
+        "roles/storage.objectViewer"
+      ],
+      "apis": [
+        {
+          "api": "firestore.googleapis.com",
+          "reason": "Receives document change events and writes restoration run status to Cloud Firestore."
+        },
+        {
+          "api": "bigquery.googleapis.com",
+          "reason": "Stores the changelog of captured Firestore document changes in BigQuery."
+        },
+        {
+          "api": "dataflow.googleapis.com",
+          "reason": "Runs the restoration flex template that replays the changelog into the target database."
+        },
+        {
+          "api": "cloudtasks.googleapis.com",
+          "reason": "Needed for task queue functions"
+        }
+      ],
+      "lifecycleHooks": [
+        "afterFirstDeploy",
+        "afterRedeploy"
+      ]
     },
     {
       "id": "firestore-send-email",
       "name": "Trigger Email from Firestore",
-      "summary": "Send emails from the documents written to a Firestore collection. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Send emails from the documents written to a Firestore collection. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/firestore-send-email",
-      "version": "0.0.1",
-      "status": "announced",
-      "integrity": "sha512-7CmiYryPsqG1mJTBvwbFROK625FKMarwSFcG/OOX5ygnRWhnd+1qgMN6uMcfP5QQaimYlNMqfLqakcJ5rC6cQA==",
+      "version": "0.0.2-rc.0",
+      "status": "preview",
+      "integrity": "sha512-nIO0OkKQjvBm9stO9z19aPMcc+nu5IQ/nXuEfxqBEunCJ+u0usi2l/4lba297ecohO5OxoO9R2Z7/YYh4KD/ug==",
       "license": "Apache-2.0",
-      "repository": "https://github.com/firebase/extensions",
-      "homepage": "https://github.com/firebase/extensions#readme",
-      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-send-email/v/0.0.1",
+      "repository": "https://github.com/firebase/extensions/tree/HEAD/kits/firestore-send-email",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-send-email/v/0.0.2-rc.0",
+      "readme": "readme/firestore-send-email.md",
       "categories": [
         "messaging"
       ],
@@ -975,21 +2419,453 @@
       "replaces": [
         "firebase/firestore-send-email"
       ],
-      "node": ">=22"
+      "node": ">=22",
+      "firebaseFunctions": "7.3.3-rc.1",
+      "functions": [
+        {
+          "name": "processQueue",
+          "trigger": "firestore",
+          "eventType": "google.cloud.firestore.document.v1.written",
+          "resource": "{{ params.MAIL_COLLECTION }}/{documentId}"
+        }
+      ],
+      "params": [
+        {
+          "name": "DATABASE",
+          "label": "Firestore Instance ID",
+          "description": "The Firestore database to use. Use \"(default)\" for the default database. You can find your available Firestore databases at [https://console.cloud.google.com/firestore/databases](https://console.cloud.google.com/firestore/databases).",
+          "input": {
+            "text": {
+              "example": "(default)"
+            }
+          },
+          "type": "string",
+          "default": "(default)"
+        },
+        {
+          "name": "DATABASE_REGION",
+          "label": "Firestore Instance Location",
+          "description": "Where is the Firestore database located? You can check your current database location at [https://console.cloud.google.com/firestore/databases](https://console.cloud.google.com/firestore/databases). The function in this kit deploys to the Cloud Run region closest to this location.",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Multi-region (Europe - Belgium and Netherlands)",
+                  "value": "eur3"
+                },
+                {
+                  "label": "Multi-region (United States)",
+                  "value": "nam5"
+                },
+                {
+                  "label": "Multi-region (Iowa, North Virginia, and Oklahoma)",
+                  "value": "nam7"
+                },
+                {
+                  "label": "Iowa (us-central1)",
+                  "value": "us-central1"
+                },
+                {
+                  "label": "Oregon (us-west1)",
+                  "value": "us-west1"
+                },
+                {
+                  "label": "Los Angeles (us-west2)",
+                  "value": "us-west2"
+                },
+                {
+                  "label": "Salt Lake City (us-west3)",
+                  "value": "us-west3"
+                },
+                {
+                  "label": "Las Vegas (us-west4)",
+                  "value": "us-west4"
+                },
+                {
+                  "label": "South Carolina (us-east1)",
+                  "value": "us-east1"
+                },
+                {
+                  "label": "Northern Virginia (us-east4)",
+                  "value": "us-east4"
+                },
+                {
+                  "label": "Columbus (us-east5)",
+                  "value": "us-east5"
+                },
+                {
+                  "label": "Dallas (us-south1)",
+                  "value": "us-south1"
+                },
+                {
+                  "label": "Montreal (northamerica-northeast1)",
+                  "value": "northamerica-northeast1"
+                },
+                {
+                  "label": "Toronto (northamerica-northeast2)",
+                  "value": "northamerica-northeast2"
+                },
+                {
+                  "label": "Queretaro (northamerica-south1)",
+                  "value": "northamerica-south1"
+                },
+                {
+                  "label": "Sao Paulo (southamerica-east1)",
+                  "value": "southamerica-east1"
+                },
+                {
+                  "label": "Santiago (southamerica-west1)",
+                  "value": "southamerica-west1"
+                },
+                {
+                  "label": "Belgium (europe-west1)",
+                  "value": "europe-west1"
+                },
+                {
+                  "label": "London (europe-west2)",
+                  "value": "europe-west2"
+                },
+                {
+                  "label": "Frankfurt (europe-west3)",
+                  "value": "europe-west3"
+                },
+                {
+                  "label": "Netherlands (europe-west4)",
+                  "value": "europe-west4"
+                },
+                {
+                  "label": "Zurich (europe-west6)",
+                  "value": "europe-west6"
+                },
+                {
+                  "label": "Milan (europe-west8)",
+                  "value": "europe-west8"
+                },
+                {
+                  "label": "Paris (europe-west9)",
+                  "value": "europe-west9"
+                },
+                {
+                  "label": "Berlin (europe-west10)",
+                  "value": "europe-west10"
+                },
+                {
+                  "label": "Turin (europe-west12)",
+                  "value": "europe-west12"
+                },
+                {
+                  "label": "Madrid (europe-southwest1)",
+                  "value": "europe-southwest1"
+                },
+                {
+                  "label": "Finland (europe-north1)",
+                  "value": "europe-north1"
+                },
+                {
+                  "label": "Stockholm (europe-north2)",
+                  "value": "europe-north2"
+                },
+                {
+                  "label": "Warsaw (europe-central2)",
+                  "value": "europe-central2"
+                },
+                {
+                  "label": "Doha (me-central1)",
+                  "value": "me-central1"
+                },
+                {
+                  "label": "Dammam (me-central2)",
+                  "value": "me-central2"
+                },
+                {
+                  "label": "Tel Aviv (me-west1)",
+                  "value": "me-west1"
+                },
+                {
+                  "label": "Mumbai (asia-south1)",
+                  "value": "asia-south1"
+                },
+                {
+                  "label": "Delhi (asia-south2)",
+                  "value": "asia-south2"
+                },
+                {
+                  "label": "Singapore (asia-southeast1)",
+                  "value": "asia-southeast1"
+                },
+                {
+                  "label": "Jakarta (asia-southeast2)",
+                  "value": "asia-southeast2"
+                },
+                {
+                  "label": "Taiwan (asia-east1)",
+                  "value": "asia-east1"
+                },
+                {
+                  "label": "Hong Kong (asia-east2)",
+                  "value": "asia-east2"
+                },
+                {
+                  "label": "Tokyo (asia-northeast1)",
+                  "value": "asia-northeast1"
+                },
+                {
+                  "label": "Osaka (asia-northeast2)",
+                  "value": "asia-northeast2"
+                },
+                {
+                  "label": "Seoul (asia-northeast3)",
+                  "value": "asia-northeast3"
+                },
+                {
+                  "label": "Sydney (australia-southeast1)",
+                  "value": "australia-southeast1"
+                },
+                {
+                  "label": "Melbourne (australia-southeast2)",
+                  "value": "australia-southeast2"
+                },
+                {
+                  "label": "Johannesburg (africa-south1)",
+                  "value": "africa-south1"
+                }
+              ]
+            }
+          },
+          "type": "string"
+        },
+        {
+          "name": "AUTH_TYPE",
+          "label": "Authentication Type",
+          "description": "The authentication type to be used for the SMTP server (e.g., OAuth2, Username & Password).",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Username & Password",
+                  "value": "UsernamePassword"
+                },
+                {
+                  "label": "OAuth2",
+                  "value": "OAuth2"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "UsernamePassword"
+        },
+        {
+          "name": "SMTP_CONNECTION_URI",
+          "label": "SMTP connection URI",
+          "description": "A URI representing an SMTP server this extension can use to deliver email. Note that port 25 is blocked by Google Cloud Platform, so we recommend using port 587 for SMTP connections. If you're using the SMTPS protocol, we recommend using port 465. In order to keep passwords secure, it is recommended to omit the password from the connection string while using the `SMTP Password` field for entering secrets and passwords. Passwords and secrets should now be included in `SMTP password` field.\nSecure format:\n `smtps://username@gmail.com@smtp.gmail.com:465` (username only)\n `smtps://smtp.gmail.com:465` (No username and password)\nBackwards Compatible (less secure):\n `smtps://username@gmail.com:password@smtp.gmail.com:465`. (username and\npassword)",
+          "input": {
+            "text": {
+              "example": "smtps://username@smtp.hostname.com:465",
+              "validationRegex": "^(smtp[s]*:\\/\\/(.*?(:[^:@]*)?@)?[^:@]+:[0-9]+(\\?[^ ]*)?)|^$",
+              "validationErrorMessage": "Invalid SMTP connection URI. Must be in the form `smtp(s)://username:password@hostname:port` or `smtp(s)://username@hostname:port` or to be left blank."
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "type": "secret",
+          "name": "SMTP_PASSWORD",
+          "label": "SMTP password",
+          "description": "User password for the SMTP server"
+        },
+        {
+          "name": "HOST",
+          "label": "OAuth2 SMTP Host",
+          "description": "The OAuth2 hostname of the SMTP server (e.g., smtp.gmail.com).",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "OAUTH_PORT",
+          "label": "OAuth2 SMTP Port",
+          "description": "The OAuth2 port number for the SMTP server (e.g., 465 for SMTPS, 587 for STARTTLS).",
+          "type": "int",
+          "default": 465
+        },
+        {
+          "name": "OAUTH_SECURE",
+          "label": "Use secure OAuth2 connection?",
+          "description": "Set to true to enable a secure connection (TLS/SSL) when using OAuth2 authentication for the SMTP server.",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Yes",
+                  "value": true
+                },
+                {
+                  "label": "No",
+                  "value": false
+                }
+              ]
+            }
+          },
+          "type": "boolean",
+          "default": true
+        },
+        {
+          "type": "secret",
+          "name": "CLIENT_ID",
+          "label": "OAuth2 Client ID",
+          "description": "The OAuth2 Client ID for authentication with the SMTP server."
+        },
+        {
+          "type": "secret",
+          "name": "CLIENT_SECRET",
+          "label": "OAuth2 Client Secret",
+          "description": "The OAuth2 Client Secret for authentication with the SMTP server."
+        },
+        {
+          "type": "secret",
+          "name": "REFRESH_TOKEN",
+          "label": "OAuth2 Refresh Token",
+          "description": "The OAuth2 Refresh Token for authentication with the SMTP server."
+        },
+        {
+          "name": "USER",
+          "label": "OAuth2 SMTP User",
+          "description": "The OAuth2 user email or username for SMTP authentication.",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "MAIL_COLLECTION",
+          "label": "Email documents collection",
+          "description": "What is the path to the collection that contains the documents used to build and send the emails?",
+          "input": {
+            "text": {
+              "validationRegex": "^[^\\/]+(\\/[^\\/]+\\/[^\\/]+)*$",
+              "validationErrorMessage": "Must be a valid Cloud Firestore collection"
+            }
+          },
+          "type": "string",
+          "default": "mail"
+        },
+        {
+          "name": "DEFAULT_FROM",
+          "label": "Default FROM address",
+          "description": "The email address to use as the sender's address (if it's not specified in the added email document). You can optionally include a name with the email address (`Friendly Firebaser <foobar@example.com>`). This parameter does not work with [Gmail SMTP](https://nodemailer.com/usage/using-gmail/).",
+          "input": {
+            "text": {
+              "example": "foobar@example.com",
+              "validationRegex": "^(([^<>()\\[\\]\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\.,;:\\s@\"]+)*)|(\".+\"))@(([^<>()[\\]\\.,;:\\s@\"]+\\.)+[^<>()[\\]\\.,;:\\s@\"]{2,})$|^.*<(([^<>()\\[\\]\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\.,;:\\s@\"]+)*)|(\".+\"))@(([^<>()[\\]\\.,;:\\s@\"]+\\.)+[^<>()[\\]\\.,;:\\s@\"]{2,})>$",
+              "validationErrorMessage": "Must be a valid email address or valid name plus email address"
+            }
+          },
+          "type": "string"
+        },
+        {
+          "name": "DEFAULT_REPLY_TO",
+          "label": "Default REPLY-TO address",
+          "description": "The email address to use as the reply-to address (if it's not specified in the added email document).",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "USERS_COLLECTION",
+          "label": "Users collection",
+          "description": "A collection of documents keyed by user UID. If the `toUids`, `ccUids`, and/or `bccUids` recipient options are used in the added email document, this extension delivers email to the `email` field based on lookups in this collection.",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "TEMPLATES_COLLECTION",
+          "label": "Templates collection",
+          "description": "A collection of email templates keyed by name. This extension can render an email using a [Handlebar](https://handlebarsjs.com/) template, it's recommended to use triple curly braces `{{{  }}}` in your Handlebars templates when the substitution value is a URL or otherwise sensitive to HTML escaping.",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "TTL_EXPIRE_TYPE",
+          "label": "Firestore TTL type",
+          "description": "Do you want the firestore records to be marked with an expireAt field for a TTL policy? If \"Never\" is selected then no expireAt field will be added. Otherwise you may specify the unit of time specified by the TTL_EXPIRE_VALUE parameter. Defaults to \"Never\".",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Never",
+                  "value": "never"
+                },
+                {
+                  "label": "Hour",
+                  "value": "hour"
+                },
+                {
+                  "label": "Day",
+                  "value": "day"
+                },
+                {
+                  "label": "Week",
+                  "value": "week"
+                },
+                {
+                  "label": "Month",
+                  "value": "month"
+                },
+                {
+                  "label": "Year",
+                  "value": "year"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "never"
+        },
+        {
+          "name": "TTL_EXPIRE_VALUE",
+          "label": "Firestore TTL value",
+          "description": "In the units specified by TTL_EXPIRE_TYPE, how long do you want records to be ineligible for deletion by a TTL policy? This parameter requires the Firestore TTL type parameter to be set to a value other than `Never`. For example, if `Firestore TTL type` is set to `Day` then setting this parameter to `1` will specify a TTL of 1 day.",
+          "input": {
+            "text": {
+              "validationRegex": "^[1-9][0-9]*$",
+              "validationErrorMessage": "The value must be an integer value greater than zero."
+            }
+          },
+          "type": "int",
+          "default": 1
+        },
+        {
+          "name": "TLS_OPTIONS",
+          "label": "TLS Options",
+          "description": "A JSON value representing TLS options. For more information, see https://nodejs.org/api/tls.html#tls_class_tls_tlssocket",
+          "type": "string",
+          "default": "{}"
+        }
+      ],
+      "roles": [
+        "roles/datastore.user",
+        "roles/eventarc.eventReceiver",
+        "roles/run.invoker"
+      ],
+      "apis": [
+        {
+          "api": "firestore.googleapis.com",
+          "reason": "Reads the mail queue and writes delivery state in Cloud Firestore."
+        }
+      ],
+      "lifecycleHooks": []
     },
     {
       "id": "firestore-translate-text",
       "name": "Translate Text in Firestore",
-      "summary": "Translate the strings written to a Firestore collection into several languages. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Translate the strings written to a Firestore collection into several languages. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/firestore-translate-text",
-      "version": "0.0.1",
-      "status": "announced",
-      "integrity": "sha512-Xh6oXY4VZxF3F+1nsn/H8qbtVhI9tn7fNHtQJAizwNKN9MViGZeKbv9Kz23kVW9MSu8p89IjApt8mWr762LT4Q==",
+      "version": "0.0.2-rc.4",
+      "status": "preview",
+      "integrity": "sha512-rgkfy4FuJtsZehp0bxtDVHSNCsmi2xVLOjWi5d6O0S1ZDmOCNImtTxenrpcCJFzsewqKZYoSM/Scl+b0CY6v3w==",
       "license": "Apache-2.0",
-      "repository": "https://github.com/firebase/extensions",
-      "homepage": "https://github.com/firebase/extensions#readme",
-      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-translate-text/v/0.0.1",
+      "repository": "https://github.com/firebase/extensions/tree/HEAD/kits/firestore-translate-text",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-translate-text/v/0.0.2-rc.4",
+      "readme": "readme/firestore-translate-text.md",
       "categories": [
         "ai"
       ],
@@ -997,21 +2873,167 @@
       "replaces": [
         "firebase/firestore-translate-text"
       ],
-      "node": ">=22"
+      "node": ">=22",
+      "firebaseFunctions": "7.3.3-rc.0",
+      "functions": [
+        {
+          "name": "fstranslate",
+          "trigger": "firestore",
+          "eventType": "google.cloud.firestore.document.v1.written",
+          "resource": "{{ params.COLLECTION_PATH }}/{messageId}"
+        }
+      ],
+      "params": [
+        {
+          "type": "secret",
+          "name": "GOOGLE_AI_API_KEY",
+          "label": "Google AI API Key",
+          "description": "If you selected \"AI Translations Using Gemini\" and \"Google AI\" as the provider, provide your Google AI API key here. You can create an API key at: https://ai.google.dev/gemini-api/docs/api-key. This is not required if you use Vertex AI as the provider."
+        },
+        {
+          "name": "COLLECTION_PATH",
+          "label": "Collection path",
+          "description": "What is the path to the collection that contains the strings that you want to translate?",
+          "input": {
+            "text": {
+              "example": "translations",
+              "validationRegex": "^[^\\/]+(\\/[^\\/]+\\/[^\\/]+)*$",
+              "validationErrorMessage": "Must be a valid Cloud Firestore Collection"
+            }
+          },
+          "type": "string",
+          "default": "translations"
+        },
+        {
+          "name": "INPUT_FIELD_NAME",
+          "label": "Input field name",
+          "description": "What is the name of the field that contains the string that you want to translate?",
+          "input": {
+            "text": {
+              "example": "input"
+            }
+          },
+          "type": "string",
+          "default": "input"
+        },
+        {
+          "name": "OUTPUT_FIELD_NAME",
+          "label": "Translations output field name",
+          "description": "What is the name of the field where you want to store your translations?",
+          "input": {
+            "text": {
+              "example": "translated"
+            }
+          },
+          "type": "string",
+          "default": "translated"
+        },
+        {
+          "name": "LANGUAGES",
+          "label": "Target languages for translations, as a comma-separated list",
+          "description": "Into which target languages do you want to translate new strings? The languages are identified using ISO-639-1 codes in a comma-separated list, for example: en,es,de,fr. For these codes, visit the [supported languages list](https://cloud.google.com/translate/docs/languages).",
+          "input": {
+            "text": {
+              "example": "en,es,de,fr",
+              "validationRegex": "^[a-zA-Z,-]*[a-zA-Z-]{2,}$",
+              "validationErrorMessage": "Languages must be a comma-separated list of ISO-639-1 language codes."
+            }
+          },
+          "type": "string",
+          "default": "en,es,de,fr"
+        },
+        {
+          "name": "LANGUAGES_FIELD_NAME",
+          "label": "Languages field name",
+          "description": "What is the name of the field that contains the languages that you want to translate into? This field is optional. If you don't specify it, the extension will use the languages specified in the LANGUAGES parameter.",
+          "input": {
+            "text": {
+              "example": "languages"
+            }
+          },
+          "type": "string",
+          "default": "languages"
+        },
+        {
+          "name": "TRANSLATION_PROVIDER",
+          "label": "Translation Provider",
+          "description": "Choose the translation provider to use for this extension. \"Cloud Translation API\" uses the standard Google Cloud Translation service (fast, cost-effective). \"Gemini (Google AI)\" leverages Google's Gemini models via Google AI Studio for more accurate and context-aware translations (requires Gemini API access and API key). \"Gemini (Vertex AI)\" uses Gemini models through Vertex AI in your Google Cloud project (requires Vertex AI access).",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Cloud Translation API (standard, fast, cost-effective)",
+                  "value": "translate"
+                },
+                {
+                  "label": "Gemini (Google AI) (more context-aware, requires Gemini API key)",
+                  "value": "gemini-googleai"
+                },
+                {
+                  "label": "Gemini (Vertex AI) (more context-aware, requires Vertex AI access)",
+                  "value": "gemini-vertexai"
+                }
+              ]
+            }
+          },
+          "type": "string"
+        },
+        {
+          "name": "GEMINI_MODEL",
+          "label": "Gemini Model",
+          "description": "Choose the Gemini model to use for translations. Consider model pricing, performance, and availability in your selected provider. This is only required if you select \"AI Translations Using Gemini\" as your translation model. By default, the extension uses Gemini 2.5 Flash for a balance of speed and cost.",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Gemini 2.5 Pro (highest quality, expensive, large max output size)",
+                  "value": "gemini-2.5-pro"
+                },
+                {
+                  "label": "Gemini 2.5 Flash (cost-effective, high quality, large max output size)",
+                  "value": "gemini-2.5-flash"
+                },
+                {
+                  "label": "Gemini 2.5 Flash Lite (cheap, good quality, large max output size)",
+                  "value": "gemini-2.5-flash-lite"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "gemini-2.5-flash"
+        }
+      ],
+      "roles": [
+        "roles/datastore.user",
+        "roles/eventarc.eventReceiver",
+        "roles/run.invoker"
+      ],
+      "apis": [
+        {
+          "api": "firestore.googleapis.com",
+          "reason": "Reads source strings and writes translations back to Cloud Firestore."
+        },
+        {
+          "api": "translate.googleapis.com",
+          "reason": "To use Google Translate to translate strings into the specified target languages."
+        }
+      ],
+      "lifecycleHooks": []
     },
     {
       "id": "firestore-vector-search",
       "name": "Vector Search with Firestore",
-      "summary": "Embed the documents of a Firestore collection and query them by similarity. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Embed the documents of a Firestore collection and query them by similarity. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/firestore-vector-search",
-      "version": "0.0.1",
-      "status": "announced",
-      "integrity": "sha512-kSQJc4W2wCeKxaf/8I/fOf7oDtUPsC0xDHRA9CwuFzG1AIhObFL4IbfmQDgzjBISdH2VYI+fmtuCNbz3b4s+jw==",
+      "version": "0.0.2-rc.2",
+      "status": "preview",
+      "integrity": "sha512-+zDGSlvsD+XeXnr/TuN8ZTzn8BWQWW8HG5TI5kgZHEUlCzhV0/mDiNu/qtrbwM22USy82QWjUxcz+z/nmRcYuQ==",
       "license": "Apache-2.0",
-      "repository": "https://github.com/firebase/extensions",
-      "homepage": "https://github.com/firebase/extensions#readme",
-      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-vector-search/v/0.0.1",
+      "repository": "https://github.com/firebase/extensions/tree/HEAD/kits/firestore-vector-search",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-vector-search/v/0.0.2-rc.2",
+      "readme": "readme/firestore-vector-search.md",
       "categories": [
         "search",
         "ai"
@@ -1021,21 +3043,308 @@
         "firebase/firestore-vector-search",
         "googlecloud/firestore-vector-search"
       ],
-      "node": ">=22"
+      "node": ">=22",
+      "firebaseFunctions": "7.3.3-rc.0",
+      "functions": [
+        {
+          "name": "backfillTask",
+          "trigger": "taskQueue"
+        },
+        {
+          "name": "backfillTrigger",
+          "trigger": "taskQueue"
+        },
+        {
+          "name": "embedOnWrite",
+          "trigger": "firestore",
+          "eventType": "google.cloud.firestore.document.v1.written",
+          "resource": "{{ params.COLLECTION_NAME }}/{docId}"
+        },
+        {
+          "name": "initVectorSearch",
+          "trigger": "taskQueue"
+        },
+        {
+          "name": "queryCallable",
+          "trigger": "callable"
+        },
+        {
+          "name": "queryOnWrite",
+          "trigger": "firestore",
+          "eventType": "google.cloud.firestore.document.v1.written",
+          "resource": "_catalog/index/queries/{queryId}"
+        },
+        {
+          "name": "updateTask",
+          "trigger": "taskQueue"
+        },
+        {
+          "name": "updateTrigger",
+          "trigger": "taskQueue"
+        }
+      ],
+      "params": [
+        {
+          "type": "secret",
+          "name": "GEMINI_API_KEY",
+          "label": "Gemini API key",
+          "description": "If you selected Gemini to calculate embeddings, please provide your Gemini API key"
+        },
+        {
+          "type": "secret",
+          "name": "OPENAI_API_KEY",
+          "label": "OpenAI API key",
+          "description": "If you selected OpenAI to calculate embeddings, please provide your OpenAI API key"
+        },
+        {
+          "name": "EMBEDDING_PROVIDER",
+          "label": "LLM",
+          "description": "Which embedding API do you want to use? Note: **Vertex AI provider** is supported only with the **us-central1** location.",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Gemini",
+                  "value": "gemini"
+                },
+                {
+                  "label": "Multimodal",
+                  "value": "multimodal"
+                },
+                {
+                  "label": "OpenAI",
+                  "value": "openai"
+                },
+                {
+                  "label": "Vertex AI",
+                  "value": "vertex"
+                },
+                {
+                  "label": "Other (User-provided endpoint)",
+                  "value": "custom"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "gemini"
+        },
+        {
+          "name": "CUSTOM_EMBEDDINGS_ENDPOINT",
+          "label": "LLM Function",
+          "description": "If you selected \"Other\" as your embedding provider, please provide the URL of your function that will calculate the embeddings.",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "CUSTOM_EMBEDDINGS_BATCH_SIZE",
+          "label": "LLM Function batch size",
+          "description": "If you selected \"Other\" as your embedding provider, please provide the batch size of your function that will calculate the embeddings.",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "CUSTOM_EMBEDDINGS_DIMENSION",
+          "label": "LLM Function dimension",
+          "description": "If you selected \"Other\" as your embedding provider, please provide the dimension of the embedding you will be using.",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "COLLECTION_NAME",
+          "label": "Collection path",
+          "description": "What is the path to the collection that contains the strings that you want to embed?",
+          "input": {
+            "text": {
+              "example": "products",
+              "validationRegex": "^[^\\/]+(\\/[^\\/]+\\/[^\\/]+)*$",
+              "validationErrorMessage": "Must be a valid Cloud Firestore Collection"
+            }
+          },
+          "type": "string",
+          "default": "products"
+        },
+        {
+          "name": "DEFAULT_QUERY_LIMIT",
+          "label": "Default query limit",
+          "description": "What is the default number of results to return when making a vector search query?",
+          "input": {
+            "text": {
+              "validationRegex": "^[1-9][0-9]*",
+              "validationErrorMessage": "Must be a valid Cloud Firestore Collection"
+            }
+          },
+          "type": "int",
+          "default": 3
+        },
+        {
+          "name": "DISTANCE_MEASURE",
+          "label": "Distance measure",
+          "description": "What distance measure do you want to be used to rank the results of your vector search?",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Cosine",
+                  "value": "COSINE"
+                },
+                {
+                  "label": "Euclidean",
+                  "value": "EUCLIDEAN"
+                },
+                {
+                  "label": "Dot Product",
+                  "value": "DOT_PRODUCT"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "COSINE"
+        },
+        {
+          "name": "INPUT_FIELD_NAME",
+          "label": "Input field name",
+          "description": "What is the name of the field that contains the string that you want to embed?",
+          "input": {
+            "text": {
+              "example": "input"
+            }
+          },
+          "type": "string",
+          "default": "input"
+        },
+        {
+          "name": "OUTPUT_FIELD_NAME",
+          "label": "Output field name",
+          "description": "What is the name of the field where you want to store your embeddings?",
+          "input": {
+            "text": {
+              "example": "embedding"
+            }
+          },
+          "type": "string",
+          "default": "embedding"
+        },
+        {
+          "name": "STATUS_FIELD_NAME",
+          "label": "Status field name",
+          "description": "What is the name of the field where you want to track the state of a document being embedded?",
+          "input": {
+            "text": {
+              "example": "status"
+            }
+          },
+          "type": "string",
+          "default": "status"
+        },
+        {
+          "name": "DO_BACKFILL",
+          "label": "Embed existing documents?",
+          "description": "Should existing documents in the Firestore collection be embedded as well?",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Yes",
+                  "value": true
+                },
+                {
+                  "label": "No",
+                  "value": false
+                }
+              ]
+            }
+          },
+          "type": "boolean"
+        },
+        {
+          "name": "UPDATE_ON_CONFIGURE",
+          "label": "Update existing embeddings?",
+          "description": "Should existing documents in the Firestore collection be updated with new embeddings on reconfiguring the extensions?",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Yes",
+                  "value": true
+                },
+                {
+                  "label": "No",
+                  "value": false
+                }
+              ]
+            }
+          },
+          "type": "boolean"
+        },
+        {
+          "name": "UPDATE_TRIGGER_QUEUE_NAME",
+          "type": "string",
+          "default": "updateTrigger"
+        },
+        {
+          "name": "UPDATE_TASK_QUEUE_NAME",
+          "type": "string",
+          "default": "updateTask"
+        },
+        {
+          "name": "BACKFILL_TRIGGER_QUEUE_NAME",
+          "type": "string",
+          "default": "backfillTrigger"
+        },
+        {
+          "name": "BACKFILL_TASK_QUEUE_NAME",
+          "type": "string",
+          "default": "backfillTask"
+        }
+      ],
+      "roles": [
+        "roles/datastore.user",
+        "roles/aiplatform.user",
+        "roles/storage.objectAdmin",
+        "roles/datastore.indexAdmin",
+        "roles/cloudtasks.enqueuer",
+        "roles/iam.serviceAccountUser",
+        "roles/eventarc.eventReceiver",
+        "roles/run.invoker"
+      ],
+      "apis": [
+        {
+          "api": "firestore.googleapis.com",
+          "reason": "Reads document data and writes embeddings back to Cloud Firestore."
+        },
+        {
+          "api": "aiplatform.googleapis.com",
+          "reason": "This extension uses Vertex AI for embedding and vector search when configured."
+        },
+        {
+          "api": "storage-component.googleapis.com",
+          "reason": "Needed to read image data from Cloud Storage."
+        },
+        {
+          "api": "cloudtasks.googleapis.com",
+          "reason": "Needed for task queue functions"
+        }
+      ],
+      "lifecycleHooks": [
+        "afterFirstDeploy",
+        "afterRedeploy"
+      ]
     },
     {
       "id": "rtdb-limit-child-nodes",
       "name": "Limit Child Nodes",
-      "summary": "Keep a Realtime Database path to a maximum number of child nodes, deleting the oldest. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Keep a Realtime Database path to a maximum number of child nodes, deleting the oldest. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/rtdb-limit-child-nodes",
-      "version": "0.0.1",
-      "status": "announced",
-      "integrity": "sha512-OFB9Z/KiAgg2XZ5zofcTOf8Vlk40xQlAezNF4JS856GyVL9s9C+hzksaRuWtygtqcxQbflshgCpv3ZRqhvyj8w==",
+      "version": "0.0.2-rc.3",
+      "status": "preview",
+      "integrity": "sha512-nu2BIJIHBCD+hH2CodEsSv2eB86NpgfLBKBcHRhDLvhC6xYNmnO7lnhLXrmOfCR3ugY5o2HSDbVltpz5ApirpA==",
       "license": "Apache-2.0",
-      "repository": "https://github.com/firebase/extensions",
-      "homepage": "https://github.com/firebase/extensions#readme",
-      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/rtdb-limit-child-nodes/v/0.0.1",
+      "repository": "https://github.com/firebase/extensions/tree/HEAD/kits/rtdb-limit-child-nodes",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/rtdb-limit-child-nodes/v/0.0.2-rc.3",
+      "readme": "readme/rtdb-limit-child-nodes.md",
       "categories": [
         "utilities"
       ],
@@ -1043,21 +3352,78 @@
       "replaces": [
         "firebase/rtdb-limit-child-nodes"
       ],
-      "node": ">=22"
+      "node": ">=22",
+      "firebaseFunctions": "7.3.3-rc.0",
+      "functions": [
+        {
+          "name": "rtdblimit",
+          "trigger": "database",
+          "eventType": "google.firebase.database.ref.v1.created",
+          "resource": "{{ params.RTDB_NODE_PATH }}/{nodeId}"
+        }
+      ],
+      "params": [
+        {
+          "name": "RTDB_NODE_PATH",
+          "label": "Realtime Database path",
+          "description": "What is the Realtime Database path for which you want to limit the number of child nodes?",
+          "input": {
+            "text": {
+              "example": "path/to/limit",
+              "validationRegex": "^\\S+$",
+              "validationErrorMessage": "Path cannot have spaces."
+            }
+          },
+          "type": "string"
+        },
+        {
+          "name": "MAX_COUNT",
+          "label": "Maximum count of nodes to keep",
+          "description": "What is the maximum count of nodes to keep in your specified database path? The oldest nodes will be deleted first to maintain this max count.",
+          "input": {
+            "text": {
+              "example": "10",
+              "validationRegex": "^\\d+$",
+              "validationErrorMessage": "Invalid MAX_COUNT, must be a positive integer."
+            }
+          },
+          "type": "int"
+        },
+        {
+          "name": "SELECTED_DATABASE_INSTANCE",
+          "label": "Realtime Database",
+          "description": "From which Realtime Database instance do you want to limit child nodes?",
+          "input": {
+            "text": {
+              "example": "my-instance",
+              "validationRegex": "^([0-9a-z_.-]*)$",
+              "validationErrorMessage": "Invalid database instance"
+            }
+          },
+          "type": "string"
+        }
+      ],
+      "roles": [
+        "roles/firebasedatabase.admin",
+        "roles/eventarc.eventReceiver",
+        "roles/run.invoker"
+      ],
+      "apis": [],
+      "lifecycleHooks": []
     },
     {
       "id": "speech-to-text",
       "name": "Transcribe Speech to Text",
-      "summary": "Transcribe the audio files uploaded to Cloud Storage with Cloud Speech-to-Text. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Transcribe the audio files uploaded to Cloud Storage with Cloud Speech-to-Text. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/speech-to-text",
-      "version": "0.0.1",
-      "status": "announced",
-      "integrity": "sha512-OexS7G4qMSH96kJ7tFzWBdcV80gfyCRNwYfMwfy02+nRHCLl0G3Ket5JZ0hkTGOoaZUjLA9kVo97ycsyXpoyCw==",
+      "version": "0.0.2-rc.3",
+      "status": "preview",
+      "integrity": "sha512-euSzqSuYTtXQ4GBZbb+Iq7V1NAIxOMzHfNpq+oazciCA9lfjaNKEbIXTECdqbKMehU2Rp9T0Ledt3KghsoV1XQ==",
       "license": "Apache-2.0",
-      "repository": "https://github.com/firebase/extensions",
-      "homepage": "https://github.com/firebase/extensions#readme",
-      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/speech-to-text/v/0.0.1",
+      "repository": "https://github.com/firebase/extensions/tree/HEAD/kits/speech-to-text",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/speech-to-text/v/0.0.2-rc.3",
+      "readme": "readme/speech-to-text.md",
       "categories": [
         "ai",
         "media"
@@ -1067,21 +3433,133 @@
         "firebase/speech-to-text",
         "googlecloud/speech-to-text"
       ],
-      "node": ">=22"
+      "node": ">=22",
+      "firebaseFunctions": "7.3.3-rc.0",
+      "functions": [
+        {
+          "name": "transcribeAudio",
+          "trigger": "storage",
+          "eventType": "google.cloud.storage.object.v1.finalized",
+          "resource": "{{ params.EXTENSION_BUCKET }}"
+        }
+      ],
+      "params": [
+        {
+          "name": "EXTENSION_BUCKET",
+          "label": "Cloud Storage bucket for input and output",
+          "description": "The Cloud Storage bucket that the extension should be listening to. Files uploaded to this bucket will be transcribed by the extension. If cloud storage output is enabled, transcriptions will be written to this bucket.",
+          "input": {
+            "resource": {
+              "type": "storage.googleapis.com/Bucket"
+            }
+          },
+          "type": "string",
+          "default": "{{ params.STORAGE_BUCKET }}"
+        },
+        {
+          "name": "LANGUAGE_CODE",
+          "label": "BCP-47 code of the transcription language",
+          "description": "The BCP-47 code of the transcription language, as shown in the [Language support documentation](https://cloud.google.com/speech-to-text/docs/languages)",
+          "input": {
+            "text": {
+              "example": "e.g. en-US",
+              "validationRegex": "^([a-zA-Z-])*[A-Z][A-Z]$",
+              "validationErrorMessage": "Must be a valid code from https://cloud.google.com/speech-to-text/docs/languages"
+            }
+          },
+          "type": "string"
+        },
+        {
+          "name": "MODEL",
+          "label": "Language model used for transcription",
+          "description": "Which kind of use-case should the speech-to-text transcription algorithm be honed for? For details, see [the model field in the documentation](https://cloud.google.com/speech-to-text/docs/reference/rest/v1/RecognitionConfig)\nIf you're not sure, just use the default.",
+          "input": {
+            "text": {
+              "example": "default"
+            }
+          },
+          "type": "string",
+          "default": "default"
+        },
+        {
+          "name": "OUTPUT_STORAGE_PATH",
+          "label": "Storage path for transcriptions",
+          "description": "The storage path in which to output transcriptions. If this is not set, the extension will output to the root of the bucket.",
+          "input": {
+            "text": {
+              "example": "transcriptions"
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "COLLECTION_PATH",
+          "label": "Firestore collection for storing transcribed audio",
+          "description": "The firestore collection in which to output transcriptions. If this is not set, the extension will not output the data to Firestore.",
+          "input": {
+            "text": {
+              "example": "transcriptions",
+              "validationRegex": "^(?:[^\\/]+(\\/[^\\/]+\\/[^\\/]+)*|)$",
+              "validationErrorMessage": "Must be a valid Cloud Firestore Collection"
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "ENABLE_AUTOMATIC_PUNCTUATION",
+          "label": "Enable automatic punctuation",
+          "description": "Should the transcription algorithm attempt to add punctuation to the transcription? For details, see [the documentation](https://cloud.google.com/speech-to-text/docs/automatic-punctuation)",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Enabled",
+                  "value": true
+                },
+                {
+                  "label": "Disabled",
+                  "value": false
+                }
+              ]
+            }
+          },
+          "type": "boolean",
+          "default": true
+        }
+      ],
+      "roles": [
+        "roles/storage.objectAdmin",
+        "roles/datastore.user",
+        "roles/eventarc.eventReceiver",
+        "roles/run.invoker"
+      ],
+      "apis": [
+        {
+          "api": "firestore.googleapis.com",
+          "reason": "Writes transcription results to Cloud Firestore."
+        },
+        {
+          "api": "speech.googleapis.com",
+          "reason": "Used for transcribing audio files with Cloud Speech-to-Text."
+        }
+      ],
+      "lifecycleHooks": []
     },
     {
       "id": "storage-resize-images",
       "name": "Resize Images",
-      "summary": "Resize the images uploaded to Cloud Storage. Google reserved the package for the official kit, which is not published yet.",
+      "summary": "Resize the images uploaded to Cloud Storage. Release candidate of the official kit: it may still change before its final version.",
       "publisher": "firebase",
       "package": "@firebase-function-kits/storage-resize-images",
-      "version": "0.0.1",
-      "status": "announced",
-      "integrity": "sha512-A+xTDsk39/cbZ0YiWVf0Iqg7MBipiHE+d9e2J5KTWgOw24YcDiOw+KVOB9JsSpOXidJGd64RhY+jhtmXaCwRAA==",
+      "version": "0.0.2-rc.6",
+      "status": "preview",
+      "integrity": "sha512-ewEtErcySXqDXYzIDzv7NPIGVMvA6sburGJ4tTp26dMFXRuaGq3K5PHJHwxJylF/b++tsEqSDox3rd58fbPjpw==",
       "license": "Apache-2.0",
-      "repository": "https://github.com/firebase/extensions",
-      "homepage": "https://github.com/firebase/extensions#readme",
-      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/storage-resize-images/v/0.0.1",
+      "repository": "https://github.com/firebase/extensions/tree/HEAD/kits/storage-resize-images",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/storage-resize-images/v/0.0.2-rc.6",
+      "readme": "readme/storage-resize-images.md",
       "categories": [
         "media"
       ],
@@ -1089,7 +3567,372 @@
       "replaces": [
         "firebase/storage-resize-images"
       ],
-      "node": ">=22"
+      "node": ">=22",
+      "firebaseFunctions": "7.3.3-rc.2",
+      "functions": [
+        {
+          "name": "generateResizedImage",
+          "trigger": "storage",
+          "eventType": "google.cloud.storage.object.v1.finalized",
+          "resource": "{{ params.IMG_BUCKET }}"
+        }
+      ],
+      "params": [
+        {
+          "name": "IMG_BUCKET",
+          "label": "Cloud Storage bucket for images",
+          "description": "To which Cloud Storage bucket will you upload images that you want to resize? Resized images will be stored in this bucket. Depending on your extension configuration, original images are either kept or deleted. It is recommended to create a separate bucket for this extension. For more information, refer to the [pre-installation guide](https://firebase.google.com/products/extensions/storage-resize-images).",
+          "input": {
+            "resource": {
+              "type": "storage.googleapis.com/Bucket"
+            }
+          },
+          "type": "string",
+          "default": "{{ params.STORAGE_BUCKET }}"
+        },
+        {
+          "name": "IMG_SIZES",
+          "label": "Sizes of resized images",
+          "description": "What sizes of images would you like (in pixels)? Enter the sizes as a comma-separated list of WIDTHxHEIGHT values. Learn more about [how this parameter works](https://firebase.google.com/products/extensions/storage-resize-images).",
+          "input": {
+            "text": {
+              "example": "200x200",
+              "validationRegex": "^\\d+x(\\d+,\\d+x)*\\d+$",
+              "validationErrorMessage": "Invalid sizes, must be a comma-separated list of WIDTHxHEIGHT values."
+            }
+          },
+          "type": "string",
+          "default": "200x200"
+        },
+        {
+          "name": "DELETE_ORIGINAL_FILE",
+          "label": "Deletion of original file",
+          "description": "Do you want to automatically delete the original file from the Cloud Storage bucket? Warning: these deletions cannot be undone.",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Don't delete",
+                  "value": "false"
+                },
+                {
+                  "label": "Delete on any resize attempt",
+                  "value": "true"
+                },
+                {
+                  "label": "Delete only on successful resize attempts",
+                  "value": "on_success"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "false"
+        },
+        {
+          "name": "MAKE_PUBLIC",
+          "label": "Make resized images public",
+          "description": "Do you want to make the resized images public automatically? So you can access them by URL. For example: https://storage.googleapis.com/{bucket}/{path}",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Yes",
+                  "value": "true"
+                },
+                {
+                  "label": "No",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "false"
+        },
+        {
+          "name": "RESIZED_IMAGES_PATH",
+          "label": "Cloud Storage path for resized images",
+          "description": "A relative path in which to store resized images. For example, if you specify a path here of `thumbs` and you upload an image to `/images/original.jpg`, then the resized image is stored at `/images/thumbs/original_200x200.jpg`. If you prefer to store resized images at the root of your bucket, leave this field empty.",
+          "input": {
+            "text": {
+              "example": "thumbnails"
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "INCLUDE_PATH_LIST",
+          "label": "Paths that contain images you want to resize",
+          "description": "Restrict storage-resize-images to only resize images in specific locations in your Storage bucket by  supplying a comma-separated list of absolute paths. For example, specifying the paths `/users/pictures,/restaurants/menuItems` will resize any images found in any subdirectories of `/users/pictures` and `/restaurants/menuItems`.\nYou may also use wildcard notation for directories in the path. For example, `/users/*/pictures` would include any images in any subdirectories of `/users/foo/pictures` as well as any images in subdirectories of `/users/bar/pictures`, but also any images in subdirectories of `/users/any/level/of/subdirectories/pictures`. \nIf you prefer not to explicitly restrict to certain directories of your Storage bucket, leave this field empty.",
+          "input": {
+            "text": {
+              "example": "/users/avatars,/design/pictures",
+              "validationRegex": "^(?:(\\/[^\\s\\/\\,]+)+(\\,(\\/[^\\s\\/\\,]+)+)*|)$",
+              "validationErrorMessage": "Invalid paths, must be a comma-separated list of absolute path values."
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "EXCLUDE_PATH_LIST",
+          "label": "List of absolute paths not included for resized images",
+          "description": "Ensure storage-resize-images does *not* resize images in _specific locations_ in your Storage bucket by  supplying a comma-separated list of absolute paths. For example, to *exclude* the images  stored in the `/foo/alpha` and its subdirectories and `/bar/beta` and its subdirectories, specify the paths `/foo/alpha,/bar/beta`.\nYou may also use wildcard notation for directories in the path. For example, `/users/*/pictures` would exclude any images in any subdirectories of `/users/foo/pictures` as well as any images in subdirectories of `/users/bar/pictures`, but also any images in subdirectories of `/users/any/level/of/subdirectories/pictures`.\nIf you prefer to resize every image uploaded to your Storage bucket, leave this field empty.",
+          "input": {
+            "text": {
+              "example": "/users/avatars/thumbs,/design/pictures/thumbs",
+              "validationRegex": "^(?:(\\/[^\\s\\/\\,]+)+(\\,(\\/[^\\s\\/\\,]+)+)*|)$",
+              "validationErrorMessage": "Invalid paths, must be a comma-separated list of absolute path values."
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "FAILED_IMAGES_PATH",
+          "label": "Cloud Storage path for failed images",
+          "description": "A relative path in which to store failed images. For example, if you specify a path here of `failed` and you upload an image to `/images/original.jpg`, then resizing failed, the image will be stored at `/images/failed/original.jpg`.\nLeave this field empty if you do not want to store failed images in a separate directory.",
+          "input": {
+            "text": {
+              "example": "failed",
+              "validationRegex": "^([^\\/.]*|)$",
+              "validationErrorMessage": "Values cannot include \"/\", \".\"."
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "CACHE_CONTROL_HEADER",
+          "label": "Cache-Control header for resized images",
+          "description": "This extension automatically copies any `Cache-Control` metadata from the original image to the resized images. For the resized images, do you want to overwrite this copied `Cache-Control` metadata or add `Cache-Control` metadata? Learn more about [`Cache-Control` headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control). If you prefer not to overwrite or add `Cache-Control` metadata, leave this field empty.",
+          "input": {
+            "text": {
+              "example": "max-age=86400"
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "IMAGE_TYPE",
+          "label": "Convert image to preferred types",
+          "description": "The image types you'd like your source image to convert to.  The default for this option will be to keep the original file type as the destination file type.",
+          "input": {
+            "multiSelect": {
+              "options": [
+                {
+                  "label": "jpeg",
+                  "value": "jpeg"
+                },
+                {
+                  "label": "webp",
+                  "value": "webp"
+                },
+                {
+                  "label": "png",
+                  "value": "png"
+                },
+                {
+                  "label": "tiff",
+                  "value": "tiff"
+                },
+                {
+                  "label": "gif",
+                  "value": "gif"
+                },
+                {
+                  "label": "avif",
+                  "value": "avif"
+                },
+                {
+                  "label": "original",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "type": "list",
+          "default": [
+            "false"
+          ]
+        },
+        {
+          "name": "OUTPUT_OPTIONS",
+          "label": "Output options for selected formats",
+          "description": "Provide an optional output option as a stringified object containing Sharp Output Options for selected image types conversion. eg. `{\"jpeg\": { \"quality\": 5, \"chromaSubsampling\": \"4:4:4\" }, \"png\": { \"palette\": true }}` and `{\"png\":{\"compressionLevel\":9}}`. The `\"compressionLevel\": 9` specifies the level of compression for PNG images. Higher numbers here indicate greater compression, leading to smaller file sizes at the cost of potentially increased processing time and possible loss of image quality.",
+          "input": {
+            "text": {
+              "validationRegex": "^(?:({(.*?)})|)$",
+              "validationErrorMessage": "Please provide a valid JSON object."
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "SHARP_OPTIONS",
+          "label": "Sharp constructor options for resizing images",
+          "description": "Provide an optional stringified Sharp ResizeOptions object to customize resizing behavior, eg. `{ \"fastShrinkOnLoad\": false, \"position\": \"centre\", \"fit\": \"inside\" }` The `\"fit\": \"inside\"` option ensures the image fits within given dimensions, maintaining aspect ratio, scaling down as needed without cropping or distortion. Learn more about [`Sharp constructor options`](https://sharp.pixelplumbing.com/api-resize#resize).",
+          "input": {
+            "text": {
+              "validationRegex": "^(?:({(.*?)})|)$",
+              "validationErrorMessage": "Please provide a valid JSON object."
+            }
+          },
+          "type": "string",
+          "default": "{}"
+        },
+        {
+          "name": "IS_ANIMATED",
+          "label": "GIF and WEBP animated option",
+          "description": "Keep animation of GIF and WEBP formats.",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Yes",
+                  "value": true
+                },
+                {
+                  "label": "No (1st frame only)",
+                  "value": false
+                }
+              ]
+            }
+          },
+          "type": "boolean",
+          "default": true
+        },
+        {
+          "name": "FUNCTION_MEMORY",
+          "label": "Cloud Function memory",
+          "description": "Memory of the function responsible of resizing images.  Choose how much memory to give to the function that resize images. (For animated GIF => GIF we recommend using a minimum of 2GB).",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "1 GB",
+                  "value": 1024
+                },
+                {
+                  "label": "512 MB",
+                  "value": 512
+                },
+                {
+                  "label": "2 GB",
+                  "value": 2048
+                },
+                {
+                  "label": "4 GB",
+                  "value": 4096
+                },
+                {
+                  "label": "8 GB",
+                  "value": 8192
+                }
+              ]
+            }
+          },
+          "type": "int",
+          "default": 1024
+        },
+        {
+          "name": "REGENERATE_TOKEN",
+          "label": "Assign new access token",
+          "description": "Should resized images have a new access token assigned to them,  different from the original image?",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Yes",
+                  "value": true
+                },
+                {
+                  "label": "No",
+                  "value": false
+                }
+              ]
+            }
+          },
+          "type": "boolean",
+          "default": true
+        },
+        {
+          "name": "CONTENT_FILTER_LEVEL",
+          "label": "Content filter level",
+          "description": "Set the level of content filtering to apply to uploaded images. Choose 'OFF' to disable content filtering entirely, 'BLOCK_ONLY_HIGH' to block only high-severity inappropriate content, 'BLOCK_MEDIUM_AND_ABOVE' for medium and high severity content, or 'BLOCK_LOW_AND_ABOVE' for the strictest filtering (blocks low, medium, and high severity content).",
+          "input": {
+            "select": {
+              "options": [
+                {
+                  "label": "Off (No filtering)",
+                  "value": "OFF"
+                },
+                {
+                  "label": "Low strictness (Block only high severity content)",
+                  "value": "BLOCK_ONLY_HIGH"
+                },
+                {
+                  "label": "Medium strictness (Block medium and high severity content)",
+                  "value": "BLOCK_MEDIUM_AND_ABOVE"
+                },
+                {
+                  "label": "High strictness (Block low, medium, and high severity content)",
+                  "value": "BLOCK_LOW_AND_ABOVE"
+                }
+              ]
+            }
+          },
+          "type": "string",
+          "default": "OFF"
+        },
+        {
+          "name": "CUSTOM_FILTER_PROMPT",
+          "label": "Custom content filter prompt",
+          "description": "Optionally, provide a custom prompt for content filtering. This allows you to define specific criteria for filtering beyond the standard categories. Note that this prompt should be a yes/no question. For example, \"Does this image contain a cat?\" will filter out images that Gemini thinks contain a cat. This is additional filtering on top of whichever content filtering level you choose. Leave empty to use just your selected built-in content filtering configuration.",
+          "input": {
+            "text": {
+              "example": "Does this image contain violent or threatening content?"
+            }
+          },
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "PLACEHOLDER_IMAGE_PATH",
+          "label": "Path to placeholder image",
+          "description": "Optionally, specify a path to a placeholder image to use when an uploaded image is blocked by content filtering. This should be a relative path within your storage bucket. If not provided, a default placeholder image is used.",
+          "input": {
+            "text": {
+              "example": "placeholders/blocked-content.jpg",
+              "validationRegex": "^(?:([a-zA-Z0-9_\\-\\.\\/]+)\\.(png|jpg|jpeg|gif|webp)|)$",
+              "validationErrorMessage": "Please provide a valid image path within your bucket."
+            }
+          },
+          "type": "string",
+          "default": ""
+        }
+      ],
+      "roles": [
+        "roles/storage.admin",
+        "roles/aiplatform.user",
+        "roles/eventarc.eventReceiver",
+        "roles/run.invoker"
+      ],
+      "apis": [
+        {
+          "api": "aiplatform.googleapis.com",
+          "reason": "Needed for Vertex AI content filtering when CONTENT_FILTER_LEVEL is set."
+        },
+        {
+          "api": "storage-component.googleapis.com",
+          "reason": "Needed to use Cloud Storage."
+        }
+      ],
+      "lifecycleHooks": []
     }
   ]
 }

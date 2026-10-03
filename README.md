@@ -23,7 +23,9 @@ not `announced`:
 1. installs the exact `package@version` in a throwaway directory
    (`--ignore-scripts`) and records its npm `sha512` integrity;
 2. loads it through **firebase-functions' own discovery loader** (the code path
-   `firebase deploy` uses) in a separate process with an empty environment;
+   `firebase deploy` uses) in a separate process with an empty environment —
+   except `FIREBASE_KIT_INSTANCE_ID`, which firebase-tools (15.27+) gives every
+   kit and some kits require to load;
 3. writes the resulting params, functions and triggers, required IAM roles,
    required APIs and lifecycle hooks into the catalog entry, and copies the
    package README next to it.
@@ -39,6 +41,13 @@ CI (`.github/workflows/catalog.yml`) runs the tests and
 
 1. Add an entry to `catalog/sources.json` (`id` ≤ 40 chars of `a-z0-9_-`, exact
    `version`, `status` one of `available`, `preview`, `announced`).
+
+   - `available`: a released version.
+   - `preview`: a pre-release, installable but flagged as such in Fuego — today
+     the release candidates Google publishes under the `next` tag of
+     `@firebase-function-kits/*` (`npm view <package> dist-tags`).
+   - `announced`: a reserved package that is not usable yet (its `version` is
+     only recorded, nothing is installed).
 2. Run `npm run build:catalog` and commit `catalog/`.
 3. Open a pull request. Loading a kit runs its code: review the package before
    merging, and only list publishers you trust.
