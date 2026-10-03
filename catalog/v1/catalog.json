@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01",
+  "updatedAt": "2026-10-03",
   "publishers": {
     "firebase": {
       "name": "Firebase",
@@ -14,6 +14,51 @@
     }
   },
   "kits": [
+    {
+      "id": "bigquery-firestore-export",
+      "name": "Export BigQuery to Firestore",
+      "summary": "Copy the rows of BigQuery queries into Firestore on a schedule. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/bigquery-firestore-export",
+      "version": "0.0.1",
+      "status": "announced",
+      "integrity": "sha512-jblQ9CgNbZ+LL85gFXEEE0rP/A9f0/qqQQ3r47A5ZCoerByImPfEXzb+7ioGjyKA6yPhFiff8xJiZZN8sCF4cw==",
+      "license": "Apache-2.0",
+      "repository": "https://github.com/firebase/extensions",
+      "homepage": "https://github.com/firebase/extensions#readme",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/bigquery-firestore-export/v/0.0.1",
+      "categories": [
+        "analytics"
+      ],
+      "icon": "IconDatabaseImport",
+      "replaces": [
+        "firebase/bigquery-firestore-export",
+        "googlecloud/bigquery-firestore-export"
+      ],
+      "node": ">=22"
+    },
+    {
+      "id": "delete-user-data",
+      "name": "Delete User Data",
+      "summary": "Delete the data of a user from Cloud Firestore, Realtime Database and Cloud Storage when the account is deleted. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/delete-user-data",
+      "version": "0.0.1",
+      "status": "announced",
+      "integrity": "sha512-uOwoECkZdj4gDK/WMoTX/RNz/GVfgDuzpgG6uJ6ukIlDD2LBf8pDrKiqr97zaiSlzpkGnbOvGerUH4IqTHsLaQ==",
+      "license": "Apache-2.0",
+      "repository": "https://github.com/firebase/extensions",
+      "homepage": "https://github.com/firebase/extensions#readme",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/delete-user-data/v/0.0.1",
+      "categories": [
+        "security"
+      ],
+      "icon": "IconUserX",
+      "replaces": [
+        "firebase/delete-user-data"
+      ],
+      "node": ">=22"
+    },
     {
       "id": "firestore-bigquery-export",
       "name": "Stream Firestore to BigQuery",
@@ -819,6 +864,210 @@
         "afterFirstDeploy",
         "afterRedeploy"
       ]
+    },
+    {
+      "id": "firestore-bundle-builder",
+      "name": "Firestore Bundle Builder",
+      "summary": "Build and serve Firestore data bundles from an HTTP endpoint. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/firestore-bundle-builder",
+      "version": "0.0.1",
+      "status": "announced",
+      "integrity": "sha512-FMN/1WZ41QO7zia7c0VzImR/3v0RNJ7L99uXHMt+nsy5DNsFY6MGp71VkJq5yHMu3/f4NFBAVaSsjGPgMdMJlw==",
+      "license": "Apache-2.0",
+      "repository": "https://github.com/firebase/extensions",
+      "homepage": "https://github.com/firebase/extensions#readme",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-bundle-builder/v/0.0.1",
+      "categories": [
+        "utilities"
+      ],
+      "icon": "IconPackages",
+      "replaces": [
+        "firebase/firestore-bundle-builder"
+      ],
+      "node": ">=22"
+    },
+    {
+      "id": "firestore-counter",
+      "name": "Distributed Counter",
+      "summary": "Count documents and events at high rates with sharded counters in Firestore. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/firestore-counter",
+      "version": "0.0.1",
+      "status": "announced",
+      "integrity": "sha512-FzQYkddnLjaubQJ2kPmZWexDE67cESfHAQ9QXuVnllPb4OasSxLM/+CSbPWSK/C8O/Q+rudPKSYpg6pkPLFWlQ==",
+      "license": "Apache-2.0",
+      "repository": "https://github.com/firebase/extensions",
+      "homepage": "https://github.com/firebase/extensions#readme",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-counter/v/0.0.1",
+      "categories": [
+        "utilities"
+      ],
+      "icon": "IconNumbers",
+      "replaces": [
+        "firebase/firestore-counter"
+      ],
+      "node": ">=22"
+    },
+    {
+      "id": "firestore-genai-chatbot",
+      "name": "Build Chatbot with the Gemini API",
+      "summary": "A conversational chatbot backed by Firestore and the Gemini API. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/firestore-genai-chatbot",
+      "version": "0.0.1",
+      "status": "announced",
+      "integrity": "sha512-Y6Wjlkf1vvgZvJ0IExocJom99R4YsorPdHAk6Q0cFGnkJ2dzLWgn5c8QJ2XZzYQpZ2LrWDCmzJPobKlmT9b7Ug==",
+      "license": "Apache-2.0",
+      "repository": "https://github.com/firebase/extensions",
+      "homepage": "https://github.com/firebase/extensions#readme",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-genai-chatbot/v/0.0.1",
+      "categories": [
+        "ai"
+      ],
+      "icon": "IconMessageChatbot",
+      "replaces": [
+        "firebase/firestore-genai-chatbot",
+        "googlecloud/firestore-genai-chatbot"
+      ],
+      "node": ">=22"
+    },
+    {
+      "id": "firestore-incremental-capture",
+      "name": "Firestore Incremental Capture",
+      "summary": "Capture every change of a Firestore database for point-in-time backups and restores. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/firestore-incremental-capture",
+      "version": "0.0.1",
+      "status": "announced",
+      "integrity": "sha512-mshrJFOu2v5BmdntyGQquajMIIJq7xkZnT5HU8+KvbSkuXjfdoLjA36tHDMtviUFlmK3jjNfDjpciNZ5NRuuZg==",
+      "license": "Apache-2.0",
+      "repository": "https://github.com/firebase/extensions",
+      "homepage": "https://github.com/firebase/extensions#readme",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-incremental-capture/v/0.0.1",
+      "categories": [
+        "utilities"
+      ],
+      "icon": "IconHistory",
+      "replaces": [
+        "firebase/firestore-incremental-capture",
+        "googlecloud/firestore-incremental-capture"
+      ],
+      "node": ">=22"
+    },
+    {
+      "id": "firestore-send-email",
+      "name": "Trigger Email from Firestore",
+      "summary": "Send emails from the documents written to a Firestore collection. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/firestore-send-email",
+      "version": "0.0.1",
+      "status": "announced",
+      "integrity": "sha512-7CmiYryPsqG1mJTBvwbFROK625FKMarwSFcG/OOX5ygnRWhnd+1qgMN6uMcfP5QQaimYlNMqfLqakcJ5rC6cQA==",
+      "license": "Apache-2.0",
+      "repository": "https://github.com/firebase/extensions",
+      "homepage": "https://github.com/firebase/extensions#readme",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-send-email/v/0.0.1",
+      "categories": [
+        "messaging"
+      ],
+      "icon": "IconMail",
+      "replaces": [
+        "firebase/firestore-send-email"
+      ],
+      "node": ">=22"
+    },
+    {
+      "id": "firestore-translate-text",
+      "name": "Translate Text in Firestore",
+      "summary": "Translate the strings written to a Firestore collection into several languages. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/firestore-translate-text",
+      "version": "0.0.1",
+      "status": "announced",
+      "integrity": "sha512-Xh6oXY4VZxF3F+1nsn/H8qbtVhI9tn7fNHtQJAizwNKN9MViGZeKbv9Kz23kVW9MSu8p89IjApt8mWr762LT4Q==",
+      "license": "Apache-2.0",
+      "repository": "https://github.com/firebase/extensions",
+      "homepage": "https://github.com/firebase/extensions#readme",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-translate-text/v/0.0.1",
+      "categories": [
+        "ai"
+      ],
+      "icon": "IconLanguage",
+      "replaces": [
+        "firebase/firestore-translate-text"
+      ],
+      "node": ">=22"
+    },
+    {
+      "id": "firestore-vector-search",
+      "name": "Vector Search with Firestore",
+      "summary": "Embed the documents of a Firestore collection and query them by similarity. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/firestore-vector-search",
+      "version": "0.0.1",
+      "status": "announced",
+      "integrity": "sha512-kSQJc4W2wCeKxaf/8I/fOf7oDtUPsC0xDHRA9CwuFzG1AIhObFL4IbfmQDgzjBISdH2VYI+fmtuCNbz3b4s+jw==",
+      "license": "Apache-2.0",
+      "repository": "https://github.com/firebase/extensions",
+      "homepage": "https://github.com/firebase/extensions#readme",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/firestore-vector-search/v/0.0.1",
+      "categories": [
+        "search",
+        "ai"
+      ],
+      "icon": "IconVectorTriangle",
+      "replaces": [
+        "firebase/firestore-vector-search",
+        "googlecloud/firestore-vector-search"
+      ],
+      "node": ">=22"
+    },
+    {
+      "id": "rtdb-limit-child-nodes",
+      "name": "Limit Child Nodes",
+      "summary": "Keep a Realtime Database path to a maximum number of child nodes, deleting the oldest. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/rtdb-limit-child-nodes",
+      "version": "0.0.1",
+      "status": "announced",
+      "integrity": "sha512-OFB9Z/KiAgg2XZ5zofcTOf8Vlk40xQlAezNF4JS856GyVL9s9C+hzksaRuWtygtqcxQbflshgCpv3ZRqhvyj8w==",
+      "license": "Apache-2.0",
+      "repository": "https://github.com/firebase/extensions",
+      "homepage": "https://github.com/firebase/extensions#readme",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/rtdb-limit-child-nodes/v/0.0.1",
+      "categories": [
+        "utilities"
+      ],
+      "icon": "IconListNumbers",
+      "replaces": [
+        "firebase/rtdb-limit-child-nodes"
+      ],
+      "node": ">=22"
+    },
+    {
+      "id": "speech-to-text",
+      "name": "Transcribe Speech to Text",
+      "summary": "Transcribe the audio files uploaded to Cloud Storage with Cloud Speech-to-Text. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/speech-to-text",
+      "version": "0.0.1",
+      "status": "announced",
+      "integrity": "sha512-OexS7G4qMSH96kJ7tFzWBdcV80gfyCRNwYfMwfy02+nRHCLl0G3Ket5JZ0hkTGOoaZUjLA9kVo97ycsyXpoyCw==",
+      "license": "Apache-2.0",
+      "repository": "https://github.com/firebase/extensions",
+      "homepage": "https://github.com/firebase/extensions#readme",
+      "npmUrl": "https://www.npmjs.com/package/@firebase-function-kits/speech-to-text/v/0.0.1",
+      "categories": [
+        "ai",
+        "media"
+      ],
+      "icon": "IconMicrophone",
+      "replaces": [
+        "firebase/speech-to-text",
+        "googlecloud/speech-to-text"
+      ],
+      "node": ">=22"
     },
     {
       "id": "storage-resize-images",

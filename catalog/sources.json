@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-01",
+  "updatedAt": "2026-10-03",
   "publishers": {
     "firebase": {
       "name": "Firebase",
@@ -36,6 +36,138 @@
       "categories": ["media"],
       "icon": "IconPhoto",
       "replaces": ["firebase/storage-resize-images"]
+    },
+    {
+      "id": "bigquery-firestore-export",
+      "name": "Export BigQuery to Firestore",
+      "summary": "Copy the rows of BigQuery queries into Firestore on a schedule. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/bigquery-firestore-export",
+      "version": "0.0.1",
+      "status": "announced",
+      "categories": ["analytics"],
+      "icon": "IconDatabaseImport",
+      "replaces": ["firebase/bigquery-firestore-export", "googlecloud/bigquery-firestore-export"]
+    },
+    {
+      "id": "delete-user-data",
+      "name": "Delete User Data",
+      "summary": "Delete the data of a user from Cloud Firestore, Realtime Database and Cloud Storage when the account is deleted. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/delete-user-data",
+      "version": "0.0.1",
+      "status": "announced",
+      "categories": ["security"],
+      "icon": "IconUserX",
+      "replaces": ["firebase/delete-user-data"]
+    },
+    {
+      "id": "firestore-bundle-builder",
+      "name": "Firestore Bundle Builder",
+      "summary": "Build and serve Firestore data bundles from an HTTP endpoint. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/firestore-bundle-builder",
+      "version": "0.0.1",
+      "status": "announced",
+      "categories": ["utilities"],
+      "icon": "IconPackages",
+      "replaces": ["firebase/firestore-bundle-builder"]
+    },
+    {
+      "id": "firestore-counter",
+      "name": "Distributed Counter",
+      "summary": "Count documents and events at high rates with sharded counters in Firestore. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/firestore-counter",
+      "version": "0.0.1",
+      "status": "announced",
+      "categories": ["utilities"],
+      "icon": "IconNumbers",
+      "replaces": ["firebase/firestore-counter"]
+    },
+    {
+      "id": "firestore-genai-chatbot",
+      "name": "Build Chatbot with the Gemini API",
+      "summary": "A conversational chatbot backed by Firestore and the Gemini API. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/firestore-genai-chatbot",
+      "version": "0.0.1",
+      "status": "announced",
+      "categories": ["ai"],
+      "icon": "IconMessageChatbot",
+      "replaces": ["firebase/firestore-genai-chatbot", "googlecloud/firestore-genai-chatbot"]
+    },
+    {
+      "id": "firestore-incremental-capture",
+      "name": "Firestore Incremental Capture",
+      "summary": "Capture every change of a Firestore database for point-in-time backups and restores. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/firestore-incremental-capture",
+      "version": "0.0.1",
+      "status": "announced",
+      "categories": ["utilities"],
+      "icon": "IconHistory",
+      "replaces": ["firebase/firestore-incremental-capture", "googlecloud/firestore-incremental-capture"]
+    },
+    {
+      "id": "firestore-send-email",
+      "name": "Trigger Email from Firestore",
+      "summary": "Send emails from the documents written to a Firestore collection. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/firestore-send-email",
+      "version": "0.0.1",
+      "status": "announced",
+      "categories": ["messaging"],
+      "icon": "IconMail",
+      "replaces": ["firebase/firestore-send-email"]
+    },
+    {
+      "id": "firestore-translate-text",
+      "name": "Translate Text in Firestore",
+      "summary": "Translate the strings written to a Firestore collection into several languages. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/firestore-translate-text",
+      "version": "0.0.1",
+      "status": "announced",
+      "categories": ["ai"],
+      "icon": "IconLanguage",
+      "replaces": ["firebase/firestore-translate-text"]
+    },
+    {
+      "id": "firestore-vector-search",
+      "name": "Vector Search with Firestore",
+      "summary": "Embed the documents of a Firestore collection and query them by similarity. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/firestore-vector-search",
+      "version": "0.0.1",
+      "status": "announced",
+      "categories": ["search", "ai"],
+      "icon": "IconVectorTriangle",
+      "replaces": ["firebase/firestore-vector-search", "googlecloud/firestore-vector-search"]
+    },
+    {
+      "id": "rtdb-limit-child-nodes",
+      "name": "Limit Child Nodes",
+      "summary": "Keep a Realtime Database path to a maximum number of child nodes, deleting the oldest. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/rtdb-limit-child-nodes",
+      "version": "0.0.1",
+      "status": "announced",
+      "categories": ["utilities"],
+      "icon": "IconListNumbers",
+      "replaces": ["firebase/rtdb-limit-child-nodes"]
+    },
+    {
+      "id": "speech-to-text",
+      "name": "Transcribe Speech to Text",
+      "summary": "Transcribe the audio files uploaded to Cloud Storage with Cloud Speech-to-Text. Google reserved the package for the official kit, which is not published yet.",
+      "publisher": "firebase",
+      "package": "@firebase-function-kits/speech-to-text",
+      "version": "0.0.1",
+      "status": "announced",
+      "categories": ["ai", "media"],
+      "icon": "IconMicrophone",
+      "replaces": ["firebase/speech-to-text", "googlecloud/speech-to-text"]
     }
   ]
 }
